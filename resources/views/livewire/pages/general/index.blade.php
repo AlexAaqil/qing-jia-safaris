@@ -64,7 +64,7 @@
     <section class="Packages">
         <div class="container">
             <div class="section_header">
-                <h2>Popular packages</h2>
+                <h2>Popular Packages</h2>
             </div>
 
             <div class="packages_list">
@@ -83,6 +83,21 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    </section>
+
+    <section class="NextTrip">
+        <div class="container">
+            <div class="image">
+                <img src="{{ asset('assets/images/customer-service.jpg') }}" alt="Customer Service">
+            </div>
+
+            <div class="text">
+                <h2>Let's plan your next trip</h2>
+                <p>At Qing Jia Safaris, client satisfaction and comfort are our highest priorities. From the moment you arrive to your final farewell, we ensure every detail is thoughtfully planned and professionally delivered.</p>
+                <p>Our dedicated team of local guides, drivers, and support staff work tirelessly to provide personalized service, cultural insights, and unforgettable memories.</p>
+                <p>Book with Qing Jia Safaris today and experience East Africa’s majestic landscapes, diverse wildlife, and vibrant cultures in a way only we can deliver.</p>
             </div>
         </div>
     </section>

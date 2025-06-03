@@ -111,4 +111,26 @@
             }
         }
     }
+
+    .NextTrip {
+        @apply bg-gray-50;
+        .container {
+            @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+
+            .image,
+            img {
+                @apply rounded-lg;
+            }
+
+            .text {
+                h2 {
+                    @apply mb-8 font-bold text-lg md:text-4xl;
+                }
+
+                p {
+                    @apply md:text-lg;
+                }
+            }
+        }
+    }
 }
