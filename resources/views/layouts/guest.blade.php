@@ -24,6 +24,8 @@
             {{ $slot }}
         </main>
 
+        <livewire:partials.footer />
+
         @isset($javascript)
             {{ $javascript }}
         @endisset

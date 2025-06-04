@@ -7,5 +7,6 @@
 }
 
 @import './partials/navbar.css';
+@import './partials/footer.css';
 
 @import './pages/general/home-page.css';
