@@ -1,0 +1,13 @@
+{
+  "resources/css/guest-layout.css": {
+    "file": "assets/guest-layout-Dc3ViAbo.css",
+    "src": "resources/css/guest-layout.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-T1DpEqax.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
