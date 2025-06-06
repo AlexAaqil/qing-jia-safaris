@@ -1,5 +1,5 @@
 .buttons_group {
-    @apply flex gap-8;
+    @apply flex gap-8 mt-4;
 }
 
 .btn,

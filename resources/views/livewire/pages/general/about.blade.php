@@ -12,7 +12,7 @@
     <section class="About">
         <div class="container">
             <div class="image">
-                <img src="{{ asset('assets/images/game-drive.webp') }}" alt="About Qing Jia Safaris">
+                <img src="{{ asset('assets/images/walking-safaris.webp') }}" alt="About Qing Jia Safaris">
             </div>
 
             <div class="text">
