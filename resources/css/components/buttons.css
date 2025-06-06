@@ -1,0 +1,8 @@
+.buttons_group {
+    @apply flex gap-8;
+}
+
+.btn,
+a.btn {
+    @apply bg-gray-900 text-white tracking-wide py-2 px-4 rounded-sm;
+}

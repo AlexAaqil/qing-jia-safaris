@@ -1,0 +1,76 @@
+.AboutPage {
+    .Hero {
+        @apply relative w-full min-h-[30vh] bg-cover bg-center flex items-center justify-center;
+        background-image: url('/public/assets/images/elephants.png');
+
+        &::before {
+            content: '';
+            @apply absolute inset-0 bg-black/50 z-0;
+        }
+
+        .container {
+            @apply relative z-10 text-center text-white;
+
+            h1 {
+                @apply text-4xl font-bold mb-4;
+            }
+
+            .breadcrumbs {
+                @apply flex justify-center items-center text-sm text-white;
+
+                a {
+                    @apply font-semibold hover:font-bold relative;
+
+                    &::after {
+                        content: '/';
+                        @apply mx-2 text-white/70;
+                    }
+                }
+
+                span {
+                    @apply text-white;
+                }
+            }
+        }
+    }
+
+    .About {
+        @apply py-16;
+
+        .container {
+            @apply grid md:grid-cols-2 gap-10 items-center;
+
+            .image {
+                @apply h-[420px];
+
+                img {
+                    @apply shadow-md;
+                }
+            }
+
+            .text {
+                @apply text-gray-700 space-y-4;
+            }
+        }
+    }
+
+    .Features {
+        @apply py-16 bg-gray-100;
+
+        .features_list {
+            @apply grid gap-8 md:grid-cols-3;
+
+            .feature {
+                @apply bg-white p-6 rounded-xl shadow hover:shadow-lg transition;
+
+                .title {
+                    @apply font-semibold text-lg mb-2 text-indigo-600;
+                }
+
+                .description {
+                    @apply text-gray-600;
+                }
+            }
+        }
+    }
+}

@@ -4,9 +4,22 @@
     .container {
         @apply px-4 py-6 md:px-16 mx-auto;
     }
+
+    .image {
+        @apply bg-slate-200 rounded-lg;
+
+        img {
+            @apply w-full h-full object-cover rounded-lg;
+        }
+    }
 }
+
+@import './components/buttons.css';
+@import './components/forms.css';
 
 @import './partials/navbar.css';
 @import './partials/footer.css';
 
 @import './pages/general/home-page.css';
+@import './pages/general/about-page.css';
+@import './pages/general/contact.css';
