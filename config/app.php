@@ -15,6 +15,13 @@ return [
 
     'name' => env('APP_NAME', 'Qing Jia Safaris'),
     'slogan' => 'Discover East Africa Like Never Before',
+    'location' => 'Nairobi, Kenya',
+    'city' => 'Nairobi, Kenya',
+    'email' => 'info@qingjiasafaris.com',
+    'phone_number' => '+254 746 055 487',
+    'instagram' => '#',
+    'facebook' => '#',
+    'whatsapp' => '#',
 
     /*
     |--------------------------------------------------------------------------
