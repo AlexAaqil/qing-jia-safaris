@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Qing Jia Safaris'),
+    'slogan' => 'Discover East Africa Like Never Before',
 
     /*
     |--------------------------------------------------------------------------

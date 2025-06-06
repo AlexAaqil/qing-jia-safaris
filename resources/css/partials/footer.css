@@ -1,22 +1,30 @@
 footer {
-    @apply bg-gray-900 text-white py-12;
+    @apply bg-slate-200 text-gray-900 py-12;
 
     .container {
         @apply px-4 md:px-16 mx-auto;
 
         .content {
-            @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8;
+            @apply grid grid-cols-1 lg:grid-cols-6 gap-8 items-start;
 
             h3 {
                 @apply text-xl font-bold mb-4;
             }
 
             p {
-                @apply text-gray-400 mb-4;
+                @apply text-gray-600 mb-4;
+            }
+
+            .logo {
+                @apply md:w-[200px] md:h-[200px];
+
+                img {
+                    @apply w-full h-full object-contain;
+                }
             }
 
             .branding {
-                @apply col-span-2;
+                @apply md:col-span-2;
 
                 .info {
                     @apply space-y-2;
@@ -31,7 +39,7 @@ footer {
                 @apply grid gap-2;
 
                 a {
-                    @apply text-gray-400 hover:text-white transition-colors duration-300;
+                    @apply text-gray-600 hover:text-gray-900 transition-colors duration-300;
                 }
             }
 
@@ -41,7 +49,7 @@ footer {
                 }
 
                 p {
-                    @apply text-white;
+                    @apply text-gray-600;
                 }
             }
         }
@@ -51,14 +59,14 @@ footer {
 
             .text,
             .documents a {
-                @apply text-gray-400 text-sm;
+                @apply text-gray-600 text-sm;
             }
 
             .documents {
                 @apply flex space-x-4 mt-4;
 
                 a {
-                    @apply hover:text-white transition-colors duration-300;
+                    @apply hover:text-gray-900 transition-colors duration-300;
                 }
             }
         }

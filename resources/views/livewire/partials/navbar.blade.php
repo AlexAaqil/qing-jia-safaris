@@ -17,8 +17,9 @@
             @php
                 $links = [
                     ['href' => 'home-page', 'text' => 'Home'],
-                    ['href' => 'about-page', 'text' => 'About'],
-                    ['href' => 'about-page', 'text' => 'Services'],
+                    ['href' => 'about-page', 'text' => 'About Us'],
+                    ['href' => 'about-page', 'text' => 'Tours'],
+                    ['href' => 'about-page', 'text' => 'Activities'],
                     ['href' => 'contact-page', 'text' => 'Contact'],
                 ];
             @endphp
@@ -36,7 +37,7 @@
                 @auth
                     <button wire:click="logout" class="btn_danger">Logout</button>
                 @else
-                    <a href="{{ Route::has('login') ? route('login') : '#' }}">Login</a>
+                    <a href="{{ Route::has('login') ? route('login') : '#' }}">Book Now</a>
                 @endauth
             </div>
         </div>

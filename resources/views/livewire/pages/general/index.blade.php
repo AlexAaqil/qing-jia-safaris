@@ -24,7 +24,7 @@
                 <div class="overlay"></div> {{-- This is the magic layer --}}
                 <div class="text">
                     <h1>Qing Jia Safaris</h1>
-                    <p class="sub_title">Discover East Africa Like Never Before</p>
+                    <p class="sub_title">{{ config('app.slogan') }}</p>
                     <p class="punchline">Your trusted gateway to unforgettable adventure across Kenya and Tanzania</p>
                 </div>
                 <img src="{{ asset('assets/images/elephants.png') }}" alt="Hero Image">
@@ -45,7 +45,7 @@
     <section class="Services">
         <div class="container">
             <div class="section_header">
-                <h2>Ways to travel</h2>
+                <h2>Activities</h2>
             </div>
 
             <div class="services_list">
