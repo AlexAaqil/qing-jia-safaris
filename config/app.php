@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Qing Jia Safaris'),
-    'slogan' => 'Discover East Africa Like Never Before',
+    'slogan' => 'Touring East Africa & Beyond',
     'location' => 'Nairobi, Kenya',
     'city' => 'Nairobi, Kenya',
     'email' => 'info@qingjiasafaris.com',
