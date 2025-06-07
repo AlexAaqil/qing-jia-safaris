@@ -5,7 +5,7 @@ footer {
         @apply px-4 md:px-16 mx-auto;
 
         .content {
-            @apply grid grid-cols-1 lg:grid-cols-6 gap-8 items-start;
+            @apply grid grid-cols-1 lg:grid-cols-5 gap-8 items-start;
 
             h3 {
                 @apply text-xl font-bold mb-4;
@@ -16,7 +16,7 @@ footer {
             }
 
             .logo {
-                @apply md:w-[200px] md:h-[200px];
+                @apply w-[150px] h-[150px];
 
                 img {
                     @apply w-full h-full object-contain;
@@ -24,7 +24,7 @@ footer {
             }
 
             .branding {
-                @apply md:col-span-2;
+                @apply md:col-span-1;
 
                 .info {
                     @apply space-y-2;
