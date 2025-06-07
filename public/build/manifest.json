@@ -1,6 +1,10 @@
 {
+  "public/assets/images/elephants.png": {
+    "file": "assets/elephants-BY2gOt7w.png",
+    "src": "public/assets/images/elephants.png"
+  },
   "resources/css/guest-layout.css": {
-    "file": "assets/guest-layout-Dc3ViAbo.css",
+    "file": "assets/guest-layout-DgK2k6eW.css",
     "src": "resources/css/guest-layout.css",
     "isEntry": true
   },
