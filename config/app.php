@@ -18,7 +18,7 @@ return [
     'location' => 'Nairobi, Kenya',
     'city' => 'Nairobi, Kenya',
     'email' => 'info@qingjiasafaris.com',
-    'phone_number' => '+254 746 055 487',
+    'phone_number' => '+254 722 961 971',
     'instagram' => '#',
     'facebook' => '#',
     'whatsapp' => '#',
