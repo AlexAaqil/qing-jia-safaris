@@ -1,0 +1,56 @@
+@import './utilities.css';
+
+.app_layout {
+    .container {
+        @apply min-w-full px-4 py-2 mx-auto;
+
+        .header {
+            @apply flex flex-col items-start lg:flex-row gap-4;
+
+            .info {
+                h2 {
+                    @apply text-lg font-bold;
+                }
+
+                .stats {
+                    @apply flex gap-1;
+
+                    span {
+                        @apply text-xs;
+                    }
+                    span:not(:last-child) {
+                        @apply after:content-['|'] after:ml-1 after:text-gray-400;
+
+                    }
+                }
+            }
+        }
+
+        .custom_form {
+            .header {
+                @apply bg-gray-800 text-white rounded-t-lg py-2 px-4;
+            }
+
+            form {
+                @apply bg-slate-100 p-4;
+            }
+        }
+    }
+
+    .image {
+        @apply bg-slate-200 rounded-lg;
+
+        img {
+            @apply w-full h-full object-cover rounded-lg;
+        }
+    }
+}
+
+@import './components/buttons.css';
+@import './components/forms.css';
+
+@import './partials/app-navbar.css';
+
+@import './pages/Dashboard.css';
+@import './pages/Users.css';
+@import './pages/ContactMessages.css';

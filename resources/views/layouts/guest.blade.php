@@ -20,6 +20,8 @@
     <body class="antialiased font-sans">
         <livewire:partials.navbar />
 
+        <livewire:partials.flash-messages />
+
         <main class="guest_layout">
             {{ $slot }}
         </main>
