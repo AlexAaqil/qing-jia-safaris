@@ -1,6 +1,11 @@
 # Features
-- User Management.
 - Authentication with roles.
+- User Management.
+- Tours Management (CRUD, images, pricing logic).
+- Booking Management (Filter by status, export, print invoices).
+- Manage Payments (Track by method / status).
+- Client Management (Search, view history).
+- Content Editor (Update homepage content, blog posts, contact info).
 - Reports with filters for: month, country, guide or vehicle type.
 - Export CSV for records/taxes.
 
@@ -13,21 +18,6 @@ Booking form
 Reviews, testimonials, post-trip feedback
 Blog/Articles
 Contact/WhatsApp Integration
-
-## User Dashboard
-View past and upcoming bookings.
-Chat with admin.
-Make Payments.
-Upload documents.
-
-## Admin Dashboard
-Manage Tours (CRUD, images, pricing logic).
-Manage Bookings (Filter by status, export, print invoices).
-Manage Clients (Search, view history).
-Manage Payments (Track by method / status).
-Content Editor (Update homepage content, blog posts, contact info).
-Role Management (Admin, Agent, Manager).
-Notification Center (New bookings, payments received).
 
 
 
@@ -47,36 +37,96 @@ users {
     timestamps();
 }
 
+tour_categories {
+    id();
+    uuid();
+    string('title')->unique();
+    string('slug')->index();
+    timestamps();
+}
+
 tours {
-    id
-    title
-    slug
-    category
-    description
-    price
-    duration
-    level
-    json(itenerary);
-    higlights
+    id();
+    uuid();
+    string('title')->unique();
+    string('slug')->index();
+    string('summary');
+    text('description')->nullable();
+    unsignedTinyInteger('duration_days')->nullable();
+    unsignedTinyInteger('duration_nights')->nullable();
+    boolean('is_featured')->default(false);
+    boolean('is_published')->default(true);
+    string('currency');
+    decimal('price', 10, 2)->nullable();
+    decimal('price_ranges_to', 10, 2)->nullable();
+
+    foreignId('tour_category_id')->constrained('tour_categories')->onDelete('cascade');
+    timestamps();
+}
+
+tour_iteneraries {
+    id();
+    uuid();
+    string('title')->unique();
+    text('description');
+    unsignedTinyInteger('day_number');
+
+    foreignId('tour_id')->constrained('tours')->onDelete('cascade');
+    unique(['tour_id', 'day_number']);
+    timestamps();
+}
+
+tour_images {
+    id();
+    uuid();
+    string('image');
+    string('caption')->nullable();
+    unsignedTinyInteger('sort_order')->default(0);
+
+    foreignId('tour_id')->constrained('tours')->onDelete('cascade');
+    index(['tour_id', 'sort_order']);
+    timestamps();
 }
 
 bookings {
-    id
-    user_id
-    tour_id
-    status
-    people
-    total_price
-    start_date
-    json(extras);
+    id();
+    uuid();
+    string('booking_code');
+    string('first_name');
+    string('last_name');
+    string('email');
+    string('phone_number');
+    unsignedTinyInteger('number_of_adults');
+    unsignedTinyInteger('number_of_children')->nullable();
+    date('date_of_travel')->nullable();
+    text('additional_information')->nullable();
+    unsignedTinyInteger('status')->nullable();
+    unsignedTinyInteger('payment_status')->nullable();
+    decimal('amount_paid', 10, 2)->nullable();
+    $table->string('ip_address')->nullable();
+    $table->text('user_agent')->nullable();
+
+    foreignId('tour_id')->constrained('tours')->onDelete('cascade');
+    timestamps();
 }
 
 payments {
-    id
-    booking_id
-    amount
-    method
-    status
+    id();
+    uuid();
+    unsignedTinyInteger('status')->nullable();
+    unsignedTinyInteger('method')->nullable();
+    decimal('amount_paid', 10, 2)->nullable();
+    string('response_code')->nullable();
+    string('response_description')->nullable();
+    string('merchant_request_id')->nullable();
+    string('checkout_request_id')->nullable();
+    string('transaction_reference')->nullable();
+    string('response_description')->nullable();
+    text('customer_message')->nullable();
+    date('transaction_date')->nullable();
+
+    foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
+    timestamps();
 }
 
 reviews {
@@ -91,10 +141,35 @@ reviews {
 
 # Enums
 ```
+TOUR_CATEGORIES = [
+    kenya
+    tanzania
+    kenya-tanzania
+]
+
 TOUR_LEVELS = [
     budget
     midrange
     luxury
+]
+
+BOOKING_STATUSES = [
+    PENDING = 0;
+    CONFIRMED = 1;
+    CANCELLED = 2;
+    COMPLETED = 3;
+]
+
+PAYMENT_STATUSES = [
+    PENDING = 0;
+    PAID = 0;
+    FAILED = 1;
+]
+
+PAYMENT_METHODS = [
+    KCBMPESAEXPRESS = 0;
+    STRIPE = 1;
+    PAYPAL = 2;
 ]
 ```
 
@@ -144,7 +219,6 @@ tours can be shared or private
 
 
 ## Tours to reference
-
 Kenya Safari:
 - Discover Kenya’s diverse landscapes and wildlife on this 6-day safari. Explore the Masai Mara's iconic savannahs, teeming with the Big Five and Source: SafariBookings.com https://share.google/F6SYE4AMqeMro7ACJ
 - This 6-day Leisure Safari, provides an immersive experience through Kenya’s Three remarkable national parks. Start in Tsavo west and East, one of Source: SafariBookings.com https://share.google/xaHd2DhaV6vrlasH5
@@ -156,17 +230,42 @@ Kenya Safari:
 # Packages
 
 ## KENYA SAFARI TOUR: 3 DAYS, 2 NIGHTS FROM NAIROBI TO TSAVO WEST AND TSAVO EAST NATIONAL PARKS
-Embark on a thrilling 3-day, 2-night Kenya Safari Tour through Tsavo West and Tsavo East National Parks, starting from Nairobi. Stay at the luxurious Salt Lick Safari Lodge while exploring Kenya’s stunning landscapes and diverse wildlife, including the Big Five and Tsavo’s famous "Red Elephants." Day one takes you to Tsavo West, featuring the Shetani Lava Flow and Mzima Springs, followed by a game drive. On day two, journey to Tsavo East, home to vast elephant herds, lions, and the Yatta Plateau, before returning to the lodge for a sunset view over the waterhole. The adventure concludes with a final game drive and a scenic transfer to Mombasa’s North or South Coast, known for its pristine beaches and rich culture—a perfect end to an unforgettable safari.
-
+Embark on a thrilling 3-day, 2-night Kenya Safari Tour through Tsavo West and Tsavo East National Parks, starting from Nairobi. Stay in luxurious Lodges within these two remote parks while exploring Kenya’s stunning landscapes and diverse wildlife, including the Big Five and the Tsavo’s famous "Red Elephants." Day one takes you to Tsavo West, featuring the Shetani Lava Flow and Mzima Springs, followed by a game drive. On day two, journey to Tsavo East, home to vast elephant herds, lions, and the Yatta Plateau, before returning to the lodge for a sunset view over the waterhole. The adventure concludes with a final game drive and a scenic transfer to Mombasa’s North or South Coast, reknown for its pristine beaches and rich culture—a perfect end to an unforgettable safari.
+Tsavo West and Tsavo East National Parks, located in southeastern Kenya, together form one of the largest national parks in the world. Their combined size (over 22,000 km²) allows for off-the-beaten-path safaris, fewer crowds, and a more intimate experience with nature compared to more commercial parks like Maasai Mara. The two parks offer an unmatched diversity of landscapes and wildlife.
+While they are often grouped together, each has distinct characteristics that attract different kinds of tourists.
+Tsavo East National Park – “Theatre of the Wild” has Vast Open Plains flat, and open savannah landscapes, ideal for spotting large herds of animals.
+It offers a classic African safari experience with unobstructed views of wildlife.
+Red Elephants
+	•	One of the park’s most iconic sights is its elephants, which appear red due to wallowing in the park’s rich, red volcanic soil.
+	•	These “red elephants” are unique to Tsavo and make for striking photography.
+Galana River
+	•	This river provides a vital water source and a scenic backdrop where visitors can see crocodiles, hippos, and various animals gathering to drink.
+	•	The Lugard Falls, a series of rapids on the Galana, adds geological interest.
+Aruba Dam
+	•	A man-made dam that attracts diverse wildlife, especially during dry seasons, making it a popular spot for game viewing and birdwatching.
+Mudanda Rock
+	•	A 1.6 km-long inselberg that functions like a natural water catchment.
+	•	It offers panoramic views of the surrounding plains and a good vantage point for spotting wildlife.
+Tsavo West National Park – “Land of Lava, Springs, and Magical Scenery”
+Mzima Springs
+	•	A series of crystal-clear natural springs fed by underground water from Chyulu Hills.
+	•	Famous for its underwater viewing chamber where visitors can watch hippos and fish in their natural environment.
+Shetani Lava Flow
+	•	A dramatic black lava field formed from recent volcanic activity, offering a stark contrast to the park’s green vegetation.
+	•	The name “Shetani” means “devil” in Swahili, linked to local legends about its formation.
+Rhino Sanctuary
+	•	Tsavo West hosts one of Kenya’s largest rhino sanctuaries, offering a rare chance to see black rhinos in a protected, semi-wild environment.
+Rich Biodiversity and Dense Vegetation
+	•	Unlike the open plains of Tsavo East, Tsavo West features more woodland and forested areas, harboring a different mix of wildlife, including leopards and diverse bird species.
 Inclusions
-Transport in safari van with pop up roof and 4×4 JEEP
-Pick up from the Airport
-Accommodation as per itinerary
-All meals (B L D)
-Services of our Professional Guide/Driver
-All park entrance fees
-All game drives
-Statutory taxes
+Transport in 4×4  Landcruiser safari jeep with pop up roof
+Pick up from the Airport or hotel
+Accommodation as per itinerary
+All meals (Bed, Lunch and Dinner)
+Services of our Professional Guide/Driver
+All park entrance fees
+All game drives
+Statutory taxes
 
 Price
 Nationality
@@ -199,17 +298,20 @@ Accommodations
 
 
 ## NAIROBI CITY EXCURSION ITINERARY.
-Begin your Nairobi excursion with a pick-up from your hotel, diving into the city’s highlights starting with the Karen Blixen Museum to explore colonial history and the famed Out of Africa legacy. Next, encounter Rothschild giraffes at the Giraffe Centre, followed by a heartwarming visit to the David Sheldrick Elephant Orphanage to witness rescued elephants. Savor a delicious Kenyan meal at The Carnivore Restaurant or Nyama Choma, then immerse yourself in vibrant crafts at the Maasai Market for unique souvenirs. Your day concludes with a drop-off at your hotel, leaving you with unforgettable memories of Nairobi’s rich culture, wildlife, and heritage—all in one seamless experience.
+Begin your Nairobi excursion with a pick-up from your hotel at 05:30 am, diving into the city’s highlights starting with a short morning game drive at Nairobi National Park. The park is located within the vicinity of Nairobi City making Nairobi uniquely the only city within Africa with a National Park. Here you will have an opportunity to witness all the big five wild animals except the elephant. After a half day touring the park, you will then have choices visiting museums and animal conservation centres including:
+i.Karen Blixen Museum to explore colonial history and the famed Out of Africa legacy.
+ii.Giraffe Centre famed for its Rothschild giraffes.
+iii.David Sheldrick Elephant Orphanage to witness rescued elephants.
+iv.In the evening, savor a delicious Kenyan dinner at The Carnivore Restaurant or Nyama Choma
+v.Your day concludes with a drop-off at your hotel, leaving you with unforgettable memories of Nairobi’s rich culture, wildlife, and heritage—all in one seamless experience.
 
 Inclusions
-Transport in safari van with pop up roof and 4×4 JEEP
-Pick up from the Airport
-Accommodation as per itinerary
-All meals (B L D)
-Services of our Professional Guide/Driver
-All park entrance fees
-All game drives
-Statutory taxes
+Transport in a pop up roof 4×4 Safari Landcruiser (jeep)
+Pick up from the Airport or hotel
+Services of our Professional Guide/Driver
+All park entrance fees
+All game drives
+Statutory taxes
 
 Price
 Nationality
@@ -273,8 +375,8 @@ Accommodations
 
 
 ## 7-DAY KENYA BUDGET SAFARI ITINERARY: MAASAI MARA, LAKE NAKURU, LAKE NAIVASHA & AMBOSELI
-This 7-day Kenya budget safari begins with a pickup from Nairobi, taking you straight to the world-famous Maasai Mara for thrilling game drives where you'll spot the Big Five against stunning savannah backdrops. After two nights at Miti Mingi Eco Camp, you'll visit a Maasai village before heading to Lake Nakuru National Park, renowned for its flamingos and rhinos, with an optional boat ride on Lake Naivasha. The adventure continues to Amboseli National Park, where you'll enjoy breathtaking views of Mount Kilimanjaro while tracking elephants, zebras, and cheetahs.
-Throughout the tour, you'll stay in budget-friendly accommodations like Buraha Zenoni Hotel and Nyati Safari Camp, with all meals and drinking water included. The itinerary balances wildlife encounters with cultural experiences, including Crescent Island walks and Hell’s Gate National Park exploration. The safari concludes with a return to Nairobi, leaving you with unforgettable memories of Kenya’s iconic landscapes and wildlife—all at an affordable price.
+Embark on a 7-day budget safari beginning in Nairobi with an early morning drive to the Maasai Mara, arriving by midday for lunch and a short evening game drive. Spend the second day on a full-day safari in the Mara, exploring the expansive savannah for sightings of the Big Five and, if in season, the Great Migration, with a picnic lunch in the reserve. On day three, depart early for Lake Nakuru via the scenic Rift Valley, arriving in time for an afternoon game drive to spot flamingos, rhinos, and other wildlife. Day four takes you to nearby Lake Naivasha for a relaxed boat ride among hippos and waterbirds, followed by an optional hike at Hell's Gate National Park.
+On day five, travel south through Nairobi to Amboseli National Park at the foot of Mt. Kilimanjaro, arriving in the afternoon to settle in. Spend day six on a full-day game drive in Amboseli, famous for its large elephant herds and breathtaking views of Kilimanjaro. On the final day, enjoy a morning game drive or leisurely breakfast before returning to Nairobi, arriving by late afternoon. Budget accommodations include basic tented camps and guesthouses, with meals and park fees typically included in group safari packages.
 
 Inclusions
 Transport in safari van with pop up roof and 4×4 JEEP
@@ -296,17 +398,16 @@ Accommodations
 
 ## 10-DAY WILDLIFE AND BEACH EXPERIENCE ITINERARY
 This 10-day Wildlife and Beach Experience combines Kenya’s most thrilling safaris with the serene beauty of Diani’s white-sand beaches. Your adventure begins in the iconic Maasai Mara, where game drives reveal lions, elephants, and the Great Migration (seasonal), followed by visits to Lake Nakuru’s flamingo-filled shores and Amboseli’s elephant herds against the backdrop of Mount Kilimanjaro. Along the way, enjoy optional activities like Maasai village visits, boat rides on Lake Naivasha, and hikes through Hell’s Gate National Park. After six days of wildlife encounters, fly to Diani Beach for pure relaxation, where you’ll unwind with spa treatments, ocean views, and leisurely coastal strolls.
-Designed for both adventure and indulgence, this journey includes stays in luxury safari camps and beachfront hotels, ensuring seamless transitions from the wild to the waves. The experience concludes with a flight back to Nairobi, leaving you with unforgettable memories of Kenya’s diverse landscapes—from the savannahs of the Mara to the turquoise waters of the Indian Ocean. Perfect for those seeking the ultimate blend of excitement and tranquility.
-
+Designed for both adventure and indulgence, this journey includes stays in luxury safari camps and beachfront hotels, ensuring seamless transitions from the wild to the waves. The experience concludes with a flight back to Nairobi, leaving you with unforgettable memories of Kenya’s diverse landscapes—from the savannahs of the Mara to the turquoise waters of the Indian Ocean. Perfect for those seeking the ultimate blend of excitement and tranquillity.
 Inclusions
-Transport in safari van with pop up roof and 4×4 JEEP
-Pick up from the Airport
-Accommodation as per itinerary
-All meals (B L D)
-Services of our Professional Guide/Driver
-All park entrance fees
-All game drives
-Statutory taxes
+Transport in 4×4 Landcruiser Jeep with pop up roof
+Pick up from the Airport/hotel
+Accommodation as per itinerary
+All meals (B L D)
+Services of our Professional Guide/Driver
+All park entrance fees
+All game drives
+Statutory taxes
 
 Price
 Nationality
@@ -314,4 +415,7 @@ Destinations
 Activity
 Travel by
 Accommodations
+
+## 10 Days Best Kenya Tanzania Tour
+Embark on a memorable 10-day midrange safari through Kenya and Tanzania, beginning in Nairobi with a scenic drive to the world-renowned Maasai Mara for two days of game drives among abundant wildlife, including the Big Five and, seasonally, the Great Migration. On day three, travel to Lake Naivasha for a relaxing boat ride among hippos and waterbirds, followed by an optional visit to Hell’s Gate National Park or Crescent Island. Day four takes you south to Amboseli National Park, where you’ll enjoy stunning views of Mount Kilimanjaro and observe large elephant herds during game drives. On day five, cross into Tanzania via the Namanga border post and head to Tarangire National Park, known for its giant baobab trees and impressive elephant population. Day six brings a journey to the Serengeti, with a game drive en route, and a full day in this vast and wildlife-rich park on day seven, tracking lions, cheetahs, and possibly witnessing dramatic predator-prey interactions. On day eight, drive to the Ngorongoro Conservation Area, descending into the crater for a day-long safari among rhinos, lions, and flamingos in this UNESCO World Heritage Site. Day nine offers a cultural interlude with a visit to a local Maasai village or the Olduvai Gorge before traveling to the town of Karatu or Mto wa Mbu for the night. Finally, on day ten, return to Arusha for lunch and a transfer back to Nairobi or to Kilimanjaro International Airport, concluding an unforgettable East African adventure. Accommodations are in midrange lodges and tented camps, with en-suite bathrooms, good meals, and expert local guides throughout
 
