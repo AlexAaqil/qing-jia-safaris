@@ -1,3 +1,13 @@
+# TODOS
+~~- remove the unique iteneraries property.~~
+- fix the inconsistencies with the ck editor when adding tours and fix it's styles esp the lists.
+- add the page for viewing tour details.
+- add a destinations table to be used instead of activities.
+- add the page for viewing destinations details.
+- add a tour categories crud functionality.
+- add the charts for showing bookings and sales.
+- add the functionality for booking tours.
+
 # Features
 - Authentication with roles.
 - User Management.
@@ -64,7 +74,7 @@ tours {
     timestamps();
 }
 
-tour_iteneraries {
+tour_itineraries {
     id();
     uuid();
     string('title')->unique();
@@ -72,7 +82,6 @@ tour_iteneraries {
     unsignedTinyInteger('day_number');
 
     foreignId('tour_id')->constrained('tours')->onDelete('cascade');
-    unique(['tour_id', 'day_number']);
     timestamps();
 }
 
@@ -102,6 +111,7 @@ bookings {
     text('additional_information')->nullable();
     unsignedTinyInteger('status')->nullable();
     unsignedTinyInteger('payment_status')->nullable();
+    decimal('total_amount', 10, 2)->nullable();
     decimal('amount_paid', 10, 2)->nullable();
     $table->string('ip_address')->nullable();
     $table->text('user_agent')->nullable();
