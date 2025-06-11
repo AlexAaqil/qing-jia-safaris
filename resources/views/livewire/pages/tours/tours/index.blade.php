@@ -38,13 +38,20 @@
                             </p>
                         </div>
 
-                        <div class="buttons_group">
-                            <a href="{{ Route::has('tours.edit') ? route('tours.edit', ['uuid' => $tour->uuid]) : '#' }}" wire:navigate>
-                                <x-svgs.edit class="w-4 h-4 mr-1 text-green-600 cursor-pointer" />
-                            </a>
-                            <button x-data="" x-on:click.prevent="$wire.set('delete_tour_id', {{ $tour->id }}); $dispatch('open-modal', 'confirm-tour-deletion')" class="btn_transparent" >
-                                <x-svgs.trash class="w-4 h-4 text-red-600" />
-                            </button>
+                        <div class="crud">
+                            <div class="button_group">
+                                <button wire:click="toggleIsFeatured({{ $tour->id }})" class="{{ $tour->is_featured ? 'p-1 bg-green-100 text-green-900' : 'p-1 bg-red-100 text-red-900' }}">featured</button>
+                                <button wire:click="toggleIsPublished({{ $tour->id }})" class="{{ $tour->is_published ? 'p-1 bg-green-100 text-green-900' : 'p-1 bg-red-100 text-red-900' }}">published</button>
+                            </div>
+
+                            <div class="buttons_group">
+                                <a href="{{ Route::has('tours.edit') ? route('tours.edit', ['uuid' => $tour->uuid]) : '#' }}" wire:navigate>
+                                    <x-svgs.edit class="w-4 h-4 mr-1 text-green-600 cursor-pointer" />
+                                </a>
+                                <button x-data="" x-on:click.prevent="$wire.set('delete_tour_id', {{ $tour->id }}); $dispatch('open-modal', 'confirm-tour-deletion')" class="btn_transparent" >
+                                    <x-svgs.trash class="w-4 h-4 text-red-600" />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

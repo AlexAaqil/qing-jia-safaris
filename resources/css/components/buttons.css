@@ -4,7 +4,7 @@ a.btn {
 }
 
 .buttons_group {
-    @apply flex gap-8 mt-4;
+    @apply flex items-center gap-8 mt-4;
 }
 
 .custom_form button,
@@ -13,13 +13,33 @@ a.btn {
     @apply bg-gray-900 text-white tracking-wide py-2 px-4 rounded-sm;
 }
 
-.btn_danger,
-button.btn_danger,
-a.btn_danger {
-    @apply bg-red-600;
+.actions {
+    @apply flex items-end justify-between mt-4;
+
+    .crud {
+         @apply flex items-center space-x-2;
+    }
+ }
+
+.crud {
+    @apply flex items-center justify-between gap-8 mt-4;
+
+    .buttons_group {
+        @apply mt-0 gap-6;
+
+        button {
+            @apply py-1 px-1 text-sm;
+        }
+    }
 }
 
 .btn_transparent,
 a.btn_transparent {
     @apply bg-transparent;
+}
+
+.btn_danger,
+button.btn_danger,
+a.btn_danger {
+    @apply bg-red-600;
 }
