@@ -34,7 +34,7 @@ class Tour extends Model
         return $this->belongsTo(TourCategory::class);
     }
 
-    public function iteneraries(): HasMany
+    public function itineraries(): HasMany
     {
         return $this->hasMany(TourItinerary::class);
     }

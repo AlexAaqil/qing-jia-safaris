@@ -110,7 +110,7 @@ class Form extends Component
             $message = 'Tour has been created';
         }
 
-        $this->saveIteneraries($tour);
+        $this->saveItineraries($tour);
         $this->saveImages($tour);
 
         session()->flash('notify', [
@@ -121,7 +121,7 @@ class Form extends Component
         return redirect()->route('tours.index');
     }
 
-    public function saveIteneraries(Tour $tour)
+    public function saveItineraries(Tour $tour)
     {
         $tour->itineraries()->delete(); // simple reset
         foreach ($this->itineraries as $item) {

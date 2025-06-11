@@ -76,28 +76,31 @@
 
             <div class="inputs">
                 <h3>Iteneraries</h3>
-                @foreach($iteneraries as $index => $itenerary)
+                @foreach($itineraries as $index => $itenerary)
                     <div class="border p-2 my-4" wire:key="itenerary-{{ $index }}">
                         <div class="inputs_group">
                             <div class="inputs">
                                 <label for="iteneraries.{{ $index }}.title">Title</label>
                                 <input type="text" wire:model="iteneraries.{{ $index }}.title" placeholder="Title" />
+                                <x-form-input-error field="iteneraries.{{ $index }}.title" />
                             </div>
 
                             <div class="inputs">
                                 <label for="iteneraries.{{ $index }}.day_number">Day Number</label>
                                 <input type="number" wire:model="iteneraries.{{ $index }}.day_number" placeholder="Day Number" />
+                                <x-form-input-error field="iteneraries.{{ $index }}.day_number" />
                             </div>
                         </div>
 
                         <div class="inputs">
                             <label for="description">Description</label>
                             <textarea wire:model="iteneraries.{{ $index }}.description" placeholder="Description"></textarea>
+                            <x-form-input-error field="iteneraries.{{ $index }}.description" />
                         </div>
-                        <button type="button" wire:click="removeIteneraryRow({{ $index }})" class="btn_danger">Remove</button>
+                        <button type="button" wire:click="removeItineraryRow({{ $index }})" class="btn_danger">Remove</button>
                     </div>
                 @endforeach
-                <button type="button" wire:click="addIteneraryRow">+ Add Itenerary</button>
+                <button type="button" wire:click="addItineraryRow">+ Add Itinerary</button>
             </div>
 
             <div class="inputs">
@@ -130,8 +133,8 @@
 
             <div class="inputs">
                 <label for="description">Description</label>
-                <textarea wire:model="description" id="editor_ckeditor" placeholder="Enter a Description" class="tinymiced"></textarea>
-                <x-form-input-error field="tour_category_id" />
+                <textarea wire:model="description" id="editor_ckeditor" placeholder="Enter a Description"></textarea>
+                <x-form-input-error field="description" />
             </div>
 
             <div class="buttons_group">
