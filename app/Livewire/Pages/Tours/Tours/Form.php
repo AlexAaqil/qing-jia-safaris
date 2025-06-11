@@ -164,12 +164,12 @@ class Form extends Component
         }
     }
 
-    public function addIteneraryRow()
+    public function additineraryRow()
     {
         $this->iteneraries[] = ['title' => '', 'description' => '', 'day_number' => count($this->iteneraries) + 1];
     }
 
-    public function removeIteneraryRow($index)
+    public function removeitineraryRow($index)
     {
         unset($this->iteneraries[$index]);
         $this->iteneraries = array_values($this->iteneraries);
