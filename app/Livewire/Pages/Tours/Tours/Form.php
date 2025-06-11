@@ -20,7 +20,7 @@ class Form extends Component
     public $is_featured = false;
     public $is_published = true;
 
-    public $iteneraries = [];
+    public $itineraries = [];
     public $images = [];
     public $existing_images = [];
 
@@ -29,7 +29,7 @@ class Form extends Component
         $this->tour_id = $uuid;
 
         if ($uuid) {
-            $tour = Tour::where('uuid', $uuid)->with(['iteneraries', 'images'])->firstOrFail();
+            $tour = Tour::where('uuid', $uuid)->with(['itineraries', 'images'])->firstOrFail();
 
             $this->title = $tour->title;
             $this->slug = $tour->slug;
@@ -44,7 +44,7 @@ class Form extends Component
             $this->price_ranges_to = $tour->price_ranges_to;
             $this->tour_category_id = $tour->tour_category_id;
 
-            $this->iteneraries = $tour->iteneraries->map(function($item) {
+            $this->itineraries = $tour->itineraries->map(function($item) {
                 return [
                     'title' => $item->title,
                     'description' => $item->description,
@@ -53,7 +53,7 @@ class Form extends Component
             })->toArray();
             $this->existing_images = $tour->images->pluck('image', 'id')->toArray();
         } else {
-            $this->iteneraries[] = ['title' => '', 'description' => '', 'day_number' => 1];
+            $this->itineraries[] = ['title' => '', 'description' => '', 'day_number' => 1];
         }
     }
 
@@ -71,9 +71,9 @@ class Form extends Component
             'price' => ['nullable','numeric'],
             'price_ranges_to' => ['nullable','numeric'],
             'tour_category_id' => ['required','exists:tour_categories,id'],
-            'iteneraries.*.title' => 'required|string|max:255',
-            'iteneraries.*.description' => 'required|string',
-            'iteneraries.*.day_number' => 'nullable|integer',
+            'itineraries.*.title' => 'required|string|max:255',
+            'itineraries.*.description' => 'required|string',
+            'itineraries.*.day_number' => 'nullable|integer',
             'images.*' => 'nullable|image|max:2048'
         ];
 
@@ -123,10 +123,10 @@ class Form extends Component
 
     public function saveIteneraries(Tour $tour)
     {
-        $tour->iteneraries()->delete(); // simple reset
-        foreach ($this->iteneraries as $item) {
+        $tour->itineraries()->delete(); // simple reset
+        foreach ($this->itineraries as $item) {
             if(!empty($item['title'])){
-                $tour->iteneraries()->create([
+                $tour->itineraries()->create([
                     'uuid' => Str::ulid(),
                     'tour_id' => $tour->id,
                     'title' => $item['title'],
@@ -164,15 +164,15 @@ class Form extends Component
         }
     }
 
-    public function additineraryRow()
+    public function addItineraryRow()
     {
-        $this->iteneraries[] = ['title' => '', 'description' => '', 'day_number' => count($this->iteneraries) + 1];
+        $this->itineraries[] = ['title' => '', 'description' => '', 'day_number' => count($this->itineraries) + 1];
     }
 
-    public function removeitineraryRow($index)
+    public function removeItineraryRow($index)
     {
-        unset($this->iteneraries[$index]);
-        $this->iteneraries = array_values($this->iteneraries);
+        unset($this->itineraries[$index]);
+        $this->itineraries = array_values($this->itineraries);
     }
 
     public function render()
