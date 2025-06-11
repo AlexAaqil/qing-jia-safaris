@@ -4,8 +4,8 @@
     .container {
         @apply min-w-full px-4 py-2 mx-auto;
 
-        .header {
-            @apply flex flex-col items-start lg:flex-row gap-4;
+        .app_header {
+            @apply flex flex-col items-start md:flex-row md:justify-between md:py-4 gap-4;
 
             .info {
                 h2 {
@@ -25,15 +25,17 @@
                 }
             }
         }
+    }
 
-        .custom_form {
-            .header {
-                @apply bg-gray-800 text-white rounded-t-lg py-2 px-4;
-            }
+    .custom_form {
+        @apply px-4;
 
-            form {
-                @apply bg-slate-100 p-4;
-            }
+        .header {
+            @apply bg-gray-800 text-white rounded-t-lg py-2 px-4;
+        }
+
+        form {
+            @apply bg-slate-100 p-4;
         }
     }
 
@@ -52,5 +54,6 @@
 @import './partials/app-navbar.css';
 
 @import './pages/Dashboard.css';
-@import './pages/Users.css';
 @import './pages/ContactMessages.css';
+@import './pages/Users.css';
+@import './pages/Tours.css';

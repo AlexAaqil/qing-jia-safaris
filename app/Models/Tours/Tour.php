@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Tour extends Model
 {
     protected $fillable = [
+        'uuid',
         'title',
         'slug',
         'is_featured',
@@ -46,5 +47,18 @@ class Tour extends Model
     public function bookings(): HasMany
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public function getImageAttribute()
+    {
+        $image = $this->images->first();
+        $default_path = asset('assets/images/default-image.jpg');
+        $image_path = asset('storage/' . $image?->image);
+
+        if ($image) {
+            return $image_path;
+        }
+
+        return $default_path;
     }
 }
