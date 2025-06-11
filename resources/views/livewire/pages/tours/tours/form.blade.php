@@ -75,12 +75,6 @@
             </div>
 
             <div class="inputs">
-                <label for="description">Description</label>
-                <textarea wire:model="description" id="description"></textarea>
-                <x-form-input-error field="tour_category_id" />
-            </div>
-
-            <div class="inputs">
                 <h3>Iteneraries</h3>
                 @foreach($iteneraries as $index => $itenerary)
                     <div class="border p-2 my-4" wire:key="itenerary-{{ $index }}">
@@ -134,6 +128,12 @@
                 </div>
             @endif
 
+            <div class="inputs">
+                <label for="description">Description</label>
+                <textarea wire:model="description" id="editor_ckeditor" placeholder="Enter a Description" class="tinymiced"></textarea>
+                <x-form-input-error field="tour_category_id" />
+            </div>
+
             <div class="buttons_group">
                 <button type="submit" wire:loading.attr="disabled" wire:target="saveTour">
                     <span wire:loading.remove wire:target="saveTour">{{ $tour_id ? 'Update' : 'Create' }} Tour</span>
@@ -144,4 +144,8 @@
         </form>
     </div>
 </div>
+
+<x-slot name="javascript">
+    <x-ckeditor />
+</x-slot>
 

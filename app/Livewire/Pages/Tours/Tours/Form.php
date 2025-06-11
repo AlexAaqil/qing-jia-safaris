@@ -74,7 +74,7 @@ class Form extends Component
             'iteneraries.*.title' => 'required|string|max:255',
             'iteneraries.*.description' => 'required|string',
             'iteneraries.*.day_number' => 'nullable|integer',
-            'images.*' => 'required|image|max:2048'
+            'images.*' => 'nullable|image|max:2048'
         ];
 
         if ($this->tour_id) {
@@ -104,7 +104,7 @@ class Form extends Component
             $tour->update($validated_data);
             $message = 'Tour has been updated';
         } else {
-            $validated_data['uuid'] = Str::ulid();
+            $validated_data['uuid'] = (string) Str::ulid();
             $tour = Tour::create($validated_data);
             $this->tour_id = $tour->uuid;
             $message = 'Tour has been created';
@@ -156,9 +156,9 @@ class Form extends Component
 
     public function removeExistingImage($image_id)
     {
-        $image = TourImage::find($image_id);
+        $image = TourImage::findOrFail($image_id);
         if ($image) {
-            Storage::disk('public')->delete('/tours/images' . $image->image);
+            Storage::disk('public')->delete('/tours/images/' . $image->image);
             $image->delete();
             unset($this->existing_images[$image_id]);
         }
@@ -173,17 +173,6 @@ class Form extends Component
     {
         unset($this->iteneraries[$index]);
         $this->iteneraries = array_values($this->iteneraries);
-    }
-
-    public function addImageRow()
-    {
-        $this->images[] = ['image' => '', 'caption' => '', 'sort_order' => null];
-    }
-
-    public function removeImageRow($index)
-    {
-        unset($this->images[$index]);
-        $this->images = array_values($this->images);
     }
 
     public function render()

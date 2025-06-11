@@ -53,7 +53,7 @@ class Tour extends Model
     {
         $image = $this->images->first();
         $default_path = asset('assets/images/default-image.jpg');
-        $image_path = asset('storage/' . $image?->image);
+        $image_path = asset('storage/tours/images/' . $image?->image);
 
         if ($image) {
             return $image_path;
