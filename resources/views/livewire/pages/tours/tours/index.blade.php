@@ -6,6 +6,7 @@
                 <div class="stats">
                     <span>{{ $count_tours }} {{ Str::plural('tour', $count_tours) }}</span>
                     <span>{{ $count_published }} published</span>
+                    <span>{{ $count_featured }} featured</span>
                 </div>
             </div>
 
@@ -39,9 +40,9 @@
                         </div>
 
                         <div class="crud">
-                            <div class="button_group">
-                                <button wire:click="toggleIsFeatured({{ $tour->id }})" class="{{ $tour->is_featured ? 'p-1 bg-green-100 text-green-900' : 'p-1 bg-red-100 text-red-900' }}">featured</button>
-                                <button wire:click="toggleIsPublished({{ $tour->id }})" class="{{ $tour->is_published ? 'p-1 bg-green-100 text-green-900' : 'p-1 bg-red-100 text-red-900' }}">published</button>
+                            <div class="buttons_group">
+                                <button wire:click="toggleIsFeatured({{ $tour->id }})" class="px-1 border rounded-sm {{ $tour->is_featured ? 'bg-green-100 text-green-900 border-green-900' : 'bg-red-100 text-red-900 border-red-900' }}">featured</button>
+                                <button wire:click="toggleIsPublished({{ $tour->id }})" class="px-1 border rounded-sm {{ $tour->is_published ? 'bg-green-100 text-green-900 border-green-900' : 'bg-red-100 text-red-900 border-red-900' }}">published</button>
                             </div>
 
                             <div class="buttons_group">
