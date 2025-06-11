@@ -63,7 +63,8 @@ class Index extends Component
         $tours = Tour::orderBy('title')->get();
         $count_tours = Tour::count();
         $count_published = Tour::where('is_published', true)->count();
+        $count_featured = Tour::where('is_featured', true)->count();
 
-        return view('livewire.pages.tours.tours.index', compact('tours', 'count_tours', 'count_published'));
+        return view('livewire.pages.tours.tours.index', compact('tours', 'count_tours', 'count_published', 'count_featured'));
     }
 }
