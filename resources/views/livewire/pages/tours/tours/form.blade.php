@@ -139,7 +139,7 @@
                     <span wire:loading.remove wire:target="saveTour">{{ $tour_id ? 'Update' : 'Create' }} Tour</span>
                     <span wire:loading wire:target="saveTour">Saving Tour...</span>
                 </button>
-                <a href="{{ route('users.index') }}" wire:navigate class="btn btn_danger">Cancel</a>
+                <a href="{{ Route::has('tours.index') ? route('tours.index') : '#' }}" wire:navigate class="btn btn_danger">Cancel</a>
             </div>
         </form>
     </div>

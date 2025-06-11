@@ -40,7 +40,7 @@
 
                         <div class="buttons_group">
                             <a href="{{ Route::has('tours.edit') ? route('tours.edit', ['uuid' => $tour->uuid]) : '#' }}" wire:navigate>
-                                <x-svgs.edit class="w-4 h-4 mr-1 text-green-600" />
+                                <x-svgs.edit class="w-4 h-4 mr-1 text-green-600 cursor-pointer" />
                             </a>
                             <button x-data="" x-on:click.prevent="$wire.set('delete_tour_id', {{ $tour->id }}); $dispatch('open-modal', 'confirm-tour-deletion')" class="btn_transparent" >
                                 <x-svgs.trash class="w-4 h-4 text-red-600" />
@@ -53,4 +53,28 @@
             @endforelse
         </div>
     </div>
+
+    <x-modal name="confirm-tour-deletion" :show="$delete_tour_id !== null" focusable>
+        <div class="custom_form">
+            <form wire:submit="deleteTour" @submit="$dispatch('close-modal', 'confirm-tour-deletion')" class="p-6">
+                <h2 class="text-lg font-semibold text-gray-900">
+                    Confirm Deletion
+                </h2>
+
+                <p class="mt-2 mb-4 text-sm text-gray-600">
+                    Are you sure you want to permanently delete this tour and it's bookings?
+                </p>
+
+                <div class="buttons_group">
+                    <button type="submit" class="btn_danger">
+                        Delete tour
+                    </button>
+
+                    <button type="button" class="mr-2" x-on:click="$dispatch('close-modal', 'confirm-tour-deletion')">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </x-modal>
 </div>

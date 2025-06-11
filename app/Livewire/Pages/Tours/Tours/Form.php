@@ -141,14 +141,26 @@ class Form extends Component
     {
         if (!empty($this->images)) {
             foreach ($this->images as $image) {
-                $path = $image->store('tours/images', 'public');
+                $extension = $image->getClientOriginalExtension();
+                $image_name = $tour->slug . '-' . Str::random(6) . '.' . $extension;
+                $image->storeAs('tours/images', $image_name, 'public');
 
                 $tour->images()->create([
                     'uuid' => Str::ulid(),
                     'tour_id' => $tour->id,
-                    'image' => $path
+                    'image' => $image_name
                 ]);
             }
+        }
+    }
+
+    public function removeExistingImage($image_id)
+    {
+        $image = TourImage::find($image_id);
+        if ($image) {
+            Storage::disk('public')->delete('/tours/images' . $image->image);
+            $image->delete();
+            unset($this->existing_images[$image_id]);
         }
     }
 
@@ -172,16 +184,6 @@ class Form extends Component
     {
         unset($this->images[$index]);
         $this->images = array_values($this->images);
-    }
-
-    public function removeExistingImage($image_id)
-    {
-        $image = TourImage::find($image_id);
-        if ($image) {
-            Storage::disk('public')->delete($image->image);
-            $image->delete();
-            unset($this->existing_images[$image_id]);
-        }
     }
 
     public function render()
