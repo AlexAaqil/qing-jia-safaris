@@ -74,7 +74,7 @@ class Form extends Component
             'iteneraries.*.title' => 'required|string|max:255',
             'iteneraries.*.description' => 'required|string',
             'iteneraries.*.day_number' => 'nullable|integer',
-            'images.*' => 'required|image|max:2048' // Changed to handle file uploads with 2MB limit
+            'images.*' => 'required|image|max:2048'
         ];
 
         if ($this->tour_id) {
@@ -100,13 +100,13 @@ class Form extends Component
         $validated_data['slug'] = Str::slug($validated_data['title']);
 
         if ($this->tour_id) {
-            $tour = Tour::where('uuid', $this->tour_id)->firstOrFail(); // Fixed case and query
+            $tour = Tour::where('uuid', $this->tour_id)->firstOrFail();
             $tour->update($validated_data);
             $message = 'Tour has been updated';
         } else {
             $validated_data['uuid'] = Str::ulid();
             $tour = Tour::create($validated_data);
-            $this->tour_id = $tour->uuid; // Store UUID instead of ID
+            $this->tour_id = $tour->uuid;
             $message = 'Tour has been created';
         }
 
@@ -178,7 +178,7 @@ class Form extends Component
     {
         $image = TourImage::find($image_id);
         if ($image) {
-            Storage::disk('public')->delete($image->image); // Fixed to use the correct storage path
+            Storage::disk('public')->delete($image->image);
             $image->delete();
             unset($this->existing_images[$image_id]);
         }
