@@ -5,7 +5,7 @@ namespace App\Models\Tours;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class TourItenerary extends Model
+class TourItinerary extends Model
 {
     protected $guarded = [];
 

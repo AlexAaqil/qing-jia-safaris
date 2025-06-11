@@ -36,7 +36,7 @@ class Tour extends Model
 
     public function iteneraries(): HasMany
     {
-        return $this->hasMany(TourItenerary::class);
+        return $this->hasMany(TourItinerary::class);
     }
 
     public function images(): HasMany
