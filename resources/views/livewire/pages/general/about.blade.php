@@ -37,7 +37,7 @@
 
                 <div class="feature">
                     <p class="title">Premium Transport</p>
-                    <p class="description">All our tours are conducted in customized 4x4 Safari Land Cruiser Jeeps, built for comfort, safety, and perfect wildlife viewing. These vehicles feature pop-up roofs, ample legroom, and on-board amenities to ensure a smooth and enjoyable journey across all terrains.</p>
+                    <p class="description">All our tours are conducted in customized 4x4 Safari Land Cruiser Jeeps, built for comfort, safety, and perfect wildlife viewing with every tourist guaranteed a window seat. These vehicles feature pop-up roofs, ample legroom, and on-board amenities to ensure a smooth and enjoyable journey across all terrains.</p>
                 </div>
 
                 <div class="feature">
