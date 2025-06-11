@@ -91,13 +91,13 @@
                     @apply rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow duration-300 p-2;
 
                     .image {
-                        @apply rounded-lg;
+                        @apply rounded-lg h-[300px];
                         img {
                             @apply rounded-lg;
                         }
                     }
 
-                    .text {
+                    .content {
                         @apply mt-4 space-y-2;
 
                         .title {

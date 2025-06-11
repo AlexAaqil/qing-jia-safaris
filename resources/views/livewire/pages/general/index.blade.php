@@ -11,12 +11,6 @@
             ['name' => 'Mountain Climbing', 'image' => 'assets/images/mountain-climbing.webp'],
             ['name' => 'Walking Safaris', 'image' => 'assets/images/walking-safaris.webp'],
         ];
-
-        $packages = [
-            ['image' => 'assets/images/maasai-mara.jpg', 'title' => '5-day Kenya Safari, Ol Pejeta, Maasai Mara and Amboseli', 'price_range' => 'Ksh. 100,000 - Ksh. 150,000'],
-            ['image' => 'assets/images/lake-nakuru.jpg', 'title' => '6-day Kenya Safari, Maasai Mara, Lake Nakuru and Amboseli', 'price_range' => 'Ksh. 80,000 - Ksh. 120,000'],
-            ['image' => 'assets/images/amboselli-national-park.jpg', 'title' => '6-day Maasai Mara, Lake Nakuru & Amboseli Safari Itinerary', 'price_range' => 'Ksh. 120,000 - Ksh. 180,000'],
-        ]
     @endphp
     <section class="Hero">
         <div class="container">
@@ -68,15 +62,21 @@
             </div>
 
             <div class="packages_list">
-                @foreach($packages as $package)
+                @foreach($tours as $tour)
                     <div class="package">
                         <div class="image">
-                            <img src="{{ asset($package['image']) }}" alt="{{ $package['title'] }}">
+                            <img src="{{ $tour->image }}" alt="{{ $tour->title }}">
                         </div>
 
-                        <div class="text">
-                            <p class="title">{{ $package['title'] }}</p>
-                            <p class="price_range">{{ $package['price_range'] }}</p>
+                        <div class="content">
+                            <p class="title">{{ $tour->title }}</p>
+                            <!-- <p class="description">{{ $tour->summary }}</p> -->
+                            <p class="price">
+                                <span>$ {{ $tour->price }}</span>
+                                @if($tour->price_ranges_to)
+                                    <span>- $ {{ $tour->price_ranges_to }}</span>
+                                @endif
+                            </p>
                             <div class="button_wrapper">
                                 <a href="#" class="btn_link">View</a>
                             </div>

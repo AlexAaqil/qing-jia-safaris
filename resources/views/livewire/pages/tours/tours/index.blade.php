@@ -23,7 +23,7 @@
             @forelse($tours as $tour)
                 <div class="tour">
                     <div class="image">
-                        <img src="{{ $tour->image }}" alt="{{ $tour->name }}">
+                        <img src="{{ $tour->image }}" alt="{{ $tour->title }}">
                     </div>
 
                     <div class="content">
