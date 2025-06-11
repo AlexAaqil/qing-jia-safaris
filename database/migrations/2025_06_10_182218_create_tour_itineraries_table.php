@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tour_iteneraries', function (Blueprint $table) {
+        Schema::create('tour_itineraries', function (Blueprint $table) {
             $table->id();
             $table->uuid();
             $table->string('title')->unique();
@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedTinyInteger('day_number');
 
             $table->foreignId('tour_id')->constrained('tours')->onDelete('cascade');
-            $table->unique(['tour_id', 'day_number']);
             $table->timestamps();
         });
     }

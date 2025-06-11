@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('additional_information')->nullable();
             $table->unsignedTinyInteger('status')->default(0);
             $table->unsignedTinyInteger('payment_status')->nullable();
+            $table->decimal('total_amount', 10, 2)->nullable();
             $table->decimal('amount_paid', 10, 2)->nullable();
             $table->string('ip_address')->nullable();
             $table->text('user_agent')->nullable();
