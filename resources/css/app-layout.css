@@ -4,6 +4,23 @@
     .container {
         @apply min-w-full px-4 py-2 mx-auto;
 
+        .breadcrumbs {
+            @apply flex items-center text-sm text-gray-700;
+
+            a {
+                @apply font-bold hover:font-semibold relative text-blue-600;
+
+                &::after {
+                    content: '/';
+                    @apply mx-2 text-gray-500;
+                }
+            }
+
+            span {
+                @apply text-gray-700;
+            }
+        }
+
         .app_header {
             @apply flex flex-col items-start md:flex-row md:justify-between md:py-4 gap-4;
 
