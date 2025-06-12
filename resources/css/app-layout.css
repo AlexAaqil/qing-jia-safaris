@@ -31,7 +31,11 @@
         @apply px-4;
 
         .header {
-            @apply bg-gray-800 text-white rounded-t-lg py-2 px-4;
+            @apply flex items-center gap-2 bg-gray-800 text-white rounded-t-lg py-2 px-4;
+
+            a {
+                @apply text-white font-bold;
+            }
         }
 
         form {
