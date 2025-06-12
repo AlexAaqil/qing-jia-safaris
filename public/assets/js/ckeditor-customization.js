@@ -1,8 +1,8 @@
 ClassicEditor
-	.create( document.querySelector('#editor_ckeditor'), {
+	.create( document.querySelector('#ckeditor'), {
 		toolbar : {
 			items : [
-				'selectAll', 'findAndReplace', 
+				'selectAll', 'findAndReplace',
 				'|',
 				'undo', 'redo',
 				'|',

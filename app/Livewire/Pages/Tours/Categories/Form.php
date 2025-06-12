@@ -17,7 +17,7 @@ class Form extends Component
     public $existing_image;
 
     public $title, $image;
-    public $description = '';
+    public ?string $description = '';
 
     public function rules(): Array
     {
@@ -58,11 +58,6 @@ class Form extends Component
             $this->description = $tour_category->description;
         }
     }
-
-    public function hydrate()
-{
-    $this->dispatch('initCkeditor');
-}
 
     public function saveTourCategory()
     {
