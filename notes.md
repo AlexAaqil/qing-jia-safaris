@@ -7,6 +7,7 @@
 - add a tour categories crud functionality.
 - add the charts for showing bookings and sales.
 - add the functionality for booking tours.
+- add the logic to always update the image name when the title is updated.
 
 # Features
 - Authentication with roles.
