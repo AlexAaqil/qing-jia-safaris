@@ -1,5 +1,10 @@
 <div class="Tours">
     <div class="container">
+        <div class="breadcrumbs">
+            <a href="{{ Route::has('tour-categories.index') ? route('tour-categories.index') : '#' }}" wire:navigate>Categories</a>
+            <span>Tours</span>
+        </div>
+
         <div class="app_header">
             <div class="info">
                 <h2>Tours</h2>

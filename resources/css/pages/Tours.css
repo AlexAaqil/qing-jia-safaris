@@ -1,9 +1,12 @@
-.Tours {
+.Tours,
+.TourCategories {
     .container {
-        .tours_list {
+        .tours_list,
+        .tour_categories_list {
             @apply grid grid-cols-1 md:grid-cols-4 gap-8;
 
-            .tour {
+            .tour,
+            .tour_category {
                 @apply rounded-lg bg-blue-50 shadow-md;
 
                 .image {
