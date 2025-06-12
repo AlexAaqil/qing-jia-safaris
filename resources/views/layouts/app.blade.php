@@ -27,8 +27,6 @@
             {{ $slot }}
         </main>
 
-        @isset($javascript)
-            {{ $javascript }}
-        @endisset
+        @stack('scripts')
     </body>
 </html>

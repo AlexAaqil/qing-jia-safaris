@@ -19,7 +19,7 @@
             </div>
 
             <div class="button">
-                <a href="{{ Route::has('tour-categories.create') ? route('tour-categories.create') : '#' }}" wire:navigate class="btn">New Tour Category</a>
+                <a href="{{ Route::has('tour-categories.create') ? route('tour-categories.create') : '#' }}" class="btn">New Tour Category</a>
             </div>
         </div>
 
@@ -40,10 +40,10 @@
 
                         <div class="crud">
                             <div class="buttons_group">
-                                <a href="{{ Route::has('tour-categories.edit') ? route('tour-categories.edit', ['uuid' => $category->uuid]) : '#' }}" wire:navigate>
+                                <a href="{{ Route::has('tour-categories.edit') ? route('tour-categories.edit', $category->uuid) : '#' }}">
                                     <x-svgs.edit class="w-4 h-4 mr-1 text-green-600 cursor-pointer" />
                                 </a>
-                                <button x-data="" x-on:click.prevent="$wire.set('delete_tour_category_id', {{ $category->id }}); $dispatch('open-modal', 'confirm-tour-category-deletion')" class="btn_transparent" >
+                                <button x-data="" x-on:click.prevent="$wire.set('delete_tour_category_id', '{{ $category->uuid }}'); $dispatch('open-modal', 'confirm-tour-category-deletion')" class="btn_transparent" >
                                     <x-svgs.trash class="w-4 h-4 text-red-600" />
                                 </button>
                             </div>

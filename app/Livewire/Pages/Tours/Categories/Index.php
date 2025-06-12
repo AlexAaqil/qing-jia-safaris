@@ -4,12 +4,13 @@ namespace App\Livewire\Pages\Tours\Categories;
 
 use Livewire\Component;
 use App\Models\Tours\TourCategory;
+use Illuminate\Support\Facades\Storage;
 
 class Index extends Component
 {
     public $confirm_tour_category_deletion = false;
     public $tour_category_to_delete = null;
-    public ?int $delete_tour_category_id = null;
+    public ?string $delete_tour_category_id = null;
 
     protected $listeners = [
         'confirm-tour-category-deletion' => 'confirmTourCategoryDeletion',
@@ -24,14 +25,13 @@ class Index extends Component
     public function deleteTourCategory()
     {
         if($this->delete_tour_category_id) {
-            $tour_category = TourCategory::findOrFail($this->delete_tour_category_id);
-            if($tour_category) {
-                $tour_category->delete();
+            $tour_category = TourCategory::where('uuid', $this->delete_tour_category_id)->firstOrFail();
 
-                $this->delete_tour_category_id = null;
-                $this->dispatch('close-modal', 'confirm-tour-category-deletion');
-                $this->dispatch('notify', type: 'success', message: 'Tour Category has been deleted');
-            }
+            $tour_category->delete();
+
+            $this->delete_tour_category_id = null;
+            $this->dispatch('close-modal', 'confirm-tour-category-deletion');
+            $this->dispatch('notify', type: 'success', message: 'Tour Category has been deleted');
         }
     }
 
