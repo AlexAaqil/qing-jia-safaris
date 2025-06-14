@@ -2,6 +2,7 @@
     <div class="container">
         <div class="breadcrumbs">
             <a href="{{ Route::has('tour-categories.index') ? route('tour-categories.index') : '#' }}" wire:navigate>Categories</a>
+            <a href="{{ Route::has('tour-destinations.index') ? route('tour-destinations.index') : '#' }}" wire:navigate>Destinations</a>
             <span>Tours</span>
         </div>
 

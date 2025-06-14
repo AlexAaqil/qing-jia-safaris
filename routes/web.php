@@ -13,6 +13,8 @@ use App\Livewire\Pages\Tours\Categories\Index as TourCategories;
 use App\Http\Controllers\Tours\TourCategoryController;
 use App\Livewire\Pages\Tours\Tours\Index as Tours;
 use App\Http\Controllers\Tours\TourController;
+use App\Livewire\Pages\Tours\Destinations\Index as TourDestinations;
+use App\Http\Controllers\Tours\DestinationController;
 
 Route::get('/', HomePage::class)->name('home-page');
 Route::get('about', About::class)->name('about-page');
@@ -38,6 +40,12 @@ Route::middleware(['admin_only'])->group(function() {
     Route::post('tours', [TourController::class, 'store'])->name('tours.store');
     Route::get('tours/{tour}/edit', [TourController::class, 'edit'])->name('tours.edit');
     Route::patch('tours/{tour}', [TourController::class, 'update'])->name('tours.update');
+
+    Route::get('tour-destinations', TourDestinations::class)->name('tour-destinations.index');
+    Route::get('tour-destinations/create', [DestinationController::class, 'create'])->name('tour-destinations.create');
+    Route::post('tour-destinations', [DestinationController::class, 'store'])->name('tour-destinations.store');
+    Route::get('tour-destinations/{destination}/edit', [DestinationController::class, 'edit'])->name('tour-destinations.edit');
+    Route::patch('tour-destinations/{destination}', [DestinationController::class, 'update'])->name('tour-destinations.update');
 
     Route::get('contact-messages', ContactMessages::class)->name('contact-messages.index');
 });
