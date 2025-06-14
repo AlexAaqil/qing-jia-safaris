@@ -56,7 +56,8 @@ tour_categories {
     uuid();
     string('title')->unique();
     string('slug')->index();
-    timestamps();
+    text('description')->nullable();
+    string('image')->nullable();
 }
 
 tours {
@@ -64,12 +65,12 @@ tours {
     uuid();
     string('title')->unique();
     string('slug')->index();
+    boolean('is_featured')->default(false);
+    boolean('is_published')->default(true);
     string('summary');
     text('description')->nullable();
     unsignedTinyInteger('duration_days')->nullable();
     unsignedTinyInteger('duration_nights')->nullable();
-    boolean('is_featured')->default(false);
-    boolean('is_published')->default(true);
     string('currency');
     decimal('price', 10, 2)->nullable();
     decimal('price_ranges_to', 10, 2)->nullable();
@@ -140,6 +141,16 @@ payments {
     date('transaction_date')->nullable();
 
     foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
+    timestamps();
+}
+
+destinations {
+    id();
+    uuid();
+    string('title')->unique();
+    string('slug')->index();
+    text('description')->nullable();
+    string('image')->nullable();
     timestamps();
 }
 
