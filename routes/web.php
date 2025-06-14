@@ -12,8 +12,7 @@ use App\Livewire\Pages\Users\Form as EditUser;
 use App\Livewire\Pages\Tours\Categories\Index as TourCategories;
 use App\Http\Controllers\Tours\TourCategoryController;
 use App\Livewire\Pages\Tours\Tours\Index as Tours;
-use App\Livewire\Pages\Tours\Tours\Form as CreateTour;
-use App\Livewire\Pages\Tours\Tours\Form as EditTour;
+use App\Http\Controllers\Tours\TourController;
 
 Route::get('/', HomePage::class)->name('home-page');
 Route::get('about', About::class)->name('about-page');
@@ -33,9 +32,12 @@ Route::middleware(['admin_only'])->group(function() {
     Route::post('tour-categories', [TourCategoryController::class, 'store'])->name('tour-categories.store');
     Route::get('tour-categories/{tour_category}/edit', [TourCategoryController::class, 'edit'])->name('tour-categories.edit');
     Route::patch('tour-categories/{tour_category}', [TourCategoryController::class, 'update'])->name('tour-categories.update');
+
     Route::get('tours', Tours::class)->name('tours.index');
-    Route::get('tours/create', CreateTour::class)->name('tours.create');
-    Route::get('tours/{uuid}/edit', EditTour::class)->name('tours.edit');
+    Route::get('tours/create', [TourController::class, 'create'])->name('tours.create');
+    Route::post('tours', [TourController::class, 'store'])->name('tours.store');
+    Route::get('tours/{tour}/edit', [TourController::class, 'edit'])->name('tours.edit');
+    Route::patch('tours/{tour}', [TourController::class, 'update'])->name('tours.update');
 
     Route::get('contact-messages', ContactMessages::class)->name('contact-messages.index');
 });

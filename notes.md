@@ -3,6 +3,8 @@
 ~~- add the logic to always update the image name when the title is updated.~~
 ~~- fix the inconsistencies with the ck editor when adding and editing tours.~~
 ~~- add a tour categories crud functionality.~~
+- add feature for deleting existing tour images during editing.
+- add feature for sorting existing tour images during editing.
 - fix ckeditor's styles esp the lists.
 - add the page for viewing tour details.
 - add a destinations table to be used instead of activities.

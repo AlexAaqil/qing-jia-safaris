@@ -5,6 +5,8 @@ namespace App\Models\Tours;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Tour extends Model
 {
@@ -29,6 +31,36 @@ class Tour extends Model
         'is_published' => 'boolean',
     ];
 
+    protected static function booted()
+    {
+        static::saving(function ($tour) {
+            // Always keep slug in sync with title
+            $tour->slug = Str::slug($tour->title);
+
+            // Only generate uuid on create
+            if(!$tour->uuid) {
+                $tour->uuid = (string) Str::uuid();
+            }
+        });
+
+        static::deleting(function ($tour) {
+            foreach($tour->images as $image) {
+                $image_path = "tours/images/{$image->image}";
+                if (Storage::disk('public')->exists($image_path)) {
+                    Storage::disk('public')->delete($image_path);
+                }
+            }
+
+            $tour->images()->delete();
+            $tour->itineraries()->delete();
+        });
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(TourCategory::class);
@@ -52,13 +84,6 @@ class Tour extends Model
     public function getImageAttribute()
     {
         $image = $this->images->first();
-        $default_path = asset('assets/images/default-image.jpg');
-        $image_path = asset('storage/tours/images/' . $image?->image);
-
-        if ($image) {
-            return $image_path;
-        }
-
-        return $default_path;
+        return $image?->url ?? asset('assets/images/default-image.jpg');
     }
 }

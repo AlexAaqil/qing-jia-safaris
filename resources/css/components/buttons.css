@@ -33,9 +33,9 @@ a.btn {
     }
 }
 
-.btn_transparent,
+button.btn_transparent,
 a.btn_transparent {
-    @apply bg-transparent;
+    @apply bg-transparent text-gray-900 border border-gray-900;
 }
 
 .btn_danger,

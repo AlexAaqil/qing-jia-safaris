@@ -21,7 +21,7 @@
             </div>
 
             <div class="button">
-                <a href="{{ Route::has('tours.create') ? route('tours.create') : '#' }}" wire:navigate class="btn">New Tour</a>
+                <a href="{{ Route::has('tours.create') ? route('tours.create') : '#' }}" class="btn">New Tour</a>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="buttons_group">
-                                <a href="{{ Route::has('tours.edit') ? route('tours.edit', ['uuid' => $tour->uuid]) : '#' }}" wire:navigate>
+                                <a href="{{ Route::has('tours.edit') ? route('tours.edit', ['tour' => $tour->uuid]) : '#' }}">
                                     <x-svgs.edit class="w-4 h-4 mr-1 text-green-600 cursor-pointer" />
                                 </a>
                                 <button x-data="" x-on:click.prevent="$wire.set('delete_tour_id', {{ $tour->id }}); $dispatch('open-modal', 'confirm-tour-deletion')" class="btn_transparent" >
