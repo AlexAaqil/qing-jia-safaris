@@ -8,7 +8,7 @@
                     <p>{{ $booking->email }}</p>
                     <p>{{ $booking->phone_number }}</p>
                     <p>{{ $booking->tour->title }}</p>
-                    <p>Date {{ $booking->travel_date ?? 'N/A' }}</p>
+                    <p>Date {{ $booking->date_of_travel ?? 'N/A' }}</p>
                 </div>
             @empty
                 <p>No bookings yet.</p>
