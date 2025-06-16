@@ -29,7 +29,7 @@
             </p>
 
             <div class="buttons_group">
-                <a href="{{ Route::has('tours.book') ? route('tours.book', $tour->slug) : '#' }}" class="btn btn_link">Book This Tour</a>
+                <a href="{{ Route::has('book-tour') ? route('book-tour', $tour->slug) : '#' }}" class="btn btn_link">Book This Tour</a>
             </div>
 
             <div class="ckedited_description">

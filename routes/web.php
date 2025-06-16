@@ -20,6 +20,8 @@ use App\Http\Controllers\Tours\TourController;
 use App\Livewire\Pages\Tours\Destinations\Index as TourDestinations;
 use App\Http\Controllers\Tours\DestinationController;
 use App\Http\Controllers\Tours\TourImageController;
+use App\Livewire\Pages\Tours\Bookings\Form as BookTour;
+use App\Livewire\Pages\Tours\Bookings\Success as BookTourSuccess;
 
 Route::get('/', HomePage::class)->name('home-page');
 Route::get('about', About::class)->name('about-page');
@@ -28,6 +30,8 @@ Route::get('tours', ToursPage::class)->name('tours-page');
 Route::get('tours/{tour}', TourDetailsPage::class)->name('tour-details-page');
 Route::get('tour-destinations', DestinationsPage::class)->name('destinations-page');
 Route::get('tour-destinations/{destination}', DestinationDetailsPage::class)->name('destination-details-page');
+Route::get('tours/book/{tour}', BookTour::class)->name('book-tour');
+Route::get('tours/booking-status/{booking}', BookTourSuccess::class)->name('book-tour-success');
 
 Route::middleware(['authenticated_user'])->group(function() {
     Route::get('dashboard', Dashboard::class)->name('dashboard');

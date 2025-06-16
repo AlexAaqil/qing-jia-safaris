@@ -5,6 +5,7 @@ namespace App\Models\Tours;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Enums\BOOKING_STATUSES;
+use Illuminate\Support\Str;
 
 class Booking extends Model
 {
@@ -14,6 +15,13 @@ class Booking extends Model
         'date_of_travel' => 'date',
         'status' => BOOKING_STATUSES::class,
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($booking) {
+            $booking->uuid = (string) Str::uuid();
+        });
+    }
 
     public function tour(): BelongsTo
     {
