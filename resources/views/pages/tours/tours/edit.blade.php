@@ -24,7 +24,7 @@
 
                 <div class="inputs">
                     <label for="summary" class="required">Tour Summary</label>
-                    <input type="text" name="summary" id="summary" value="{{ old('summary', $tour->title) }}" autocomplete="summary">
+                    <input type="text" name="summary" id="summary" value="{{ old('summary', $tour->summary) }}" autocomplete="summary">
                     <x-form-input-error field="summary" />
                 </div>
             </div>
@@ -88,21 +88,20 @@
             </div>
 
             <div class="inputs mt-12">
-                <label for="images">Upload Images (Max 2MB each)</label>
+                <label for="images">Upload Images (Max of 5 images and 2MB each)</label>
                 <input type="file" name="images[]" id="images" multiple />
                 <x-form-input-error field="images.*" />
 
                 @if ($tour->images->count())
-                    <div class="existing-images flex gap-2 flex-wrap mt-2">
+                    <div class="existing_images flex gap-2 flex-wrap mt-2" id="sortable">
                         @foreach ($tour->images as $image)
-                            <div class="relative w-32 h-32">
-                                <img src="{{ asset('storage/tours/images/' . $image->image) }}" alt="Tour Image" class="w-full h-full object-cover rounded" />
+                            <div class="relative w-32 h-32 sortable_images" id="{{ $image->id }}">
+                                <img src='{{ asset("storage/tours/images/{$image->image}") }}' alt="Tour Image" class="w-full h-full object-cover rounded" />
+
+                                <a href="#" data-action="{{ route('tour-images.destroy', $image->uuid) }}" data-image-id="{{ $image->id }}" class="delete-image-link absolute top-1 right-1 btn_danger text-white p-1 rounded-full shadow hover:bg-red-100">
+                                    <x-svgs.trash class="w-4 h-4" />
+                                </a>
                             </div>
-                            {{-- <form action="{{ route('tours.images.destroy', [$tour->uuid, $image->id]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 text-xs">×</button>
-                            </form> --}}
                         @endforeach
                     </div>
                 @endif
@@ -147,6 +146,11 @@
                 <button type="submit">Update Tour</button>
                 <a href="{{ Route::has('tours.index') ? route('tours.index') : '#' }}" wire:navigate class="btn btn_danger">Cancel</a>
             </div>
+        </form>
+
+        <form id="delete-image-form" method="POST" style="display: none;">
+            @csrf
+            @method('DELETE')
         </form>
     </div>
 
@@ -201,6 +205,56 @@
                         e.preventDefault();
                         alert('Duplicate day numbers found in itineraries. Please fix them before submitting.');
                     }
+                });
+            });
+        </script>
+
+        <script src="{{ asset('assets/js/jquery.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery_ui.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+            $("#sortable").sortable({
+                update : function(event, ui) {
+                    var photo_id = new Array();
+                    $('.sortable_images').each(function() {
+                        var id = $(this).attr('id');
+                        photo_id.push(id);
+                    });
+
+                    $.ajax({
+                        type : "POST",
+                        url : "{{ url('admin/tour-images/sort') }}",
+                        data : {
+                            "photo_id" : photo_id,
+                            "_token" : "{{ csrf_token() }}"
+                        },
+                        dataType : "json",
+                        success : function(data) {
+
+                        },
+                        error : function (data) {
+
+                        }
+                    });
+                }
+            });
+        });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const deleteLinks = document.querySelectorAll('.delete-image-link');
+                const deleteForm = document.getElementById('delete-image-form');
+
+                deleteLinks.forEach(link => {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        if (confirm('Are you sure you want to delete this image?')) {
+                            deleteForm.setAttribute('action', this.dataset.action);
+                            deleteForm.submit();
+                        }
+                    });
                 });
             });
         </script>

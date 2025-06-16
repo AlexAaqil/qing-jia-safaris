@@ -20,6 +20,10 @@
                         .title {
                             @apply font-semibold;
                         }
+
+                        .price {
+                            @apply mt-4 text-gray-700;
+                        }
                     }
                 }
             }
@@ -62,21 +66,21 @@
         }
 
         .content_wrapper {
-            @apply px-2 py-4;
+            @apply px-2 py-2;
 
             .title {
-                @apply font-bold text-4xl text-orange-500;
+                @apply font-bold text-4xl;
             }
 
             .price {
-                @apply text-gray-600 font-bold mt-2;
+                @apply text-gray-600 font-bold mt-4;
             }
 
             .buttons_group {
-                @apply mt-2;
+                @apply mt-4;
             }
 
-            .description {
+            .ckedited_description {
                 @apply mt-12;
             }
 

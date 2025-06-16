@@ -19,6 +19,7 @@ use App\Livewire\Pages\Tours\Tours\Index as Tours;
 use App\Http\Controllers\Tours\TourController;
 use App\Livewire\Pages\Tours\Destinations\Index as TourDestinations;
 use App\Http\Controllers\Tours\DestinationController;
+use App\Http\Controllers\Tours\TourImageController;
 
 Route::get('/', HomePage::class)->name('home-page');
 Route::get('about', About::class)->name('about-page');
@@ -55,6 +56,9 @@ Route::middleware(['admin_only'])->group(function() {
         Route::post('tour-destinations', [DestinationController::class, 'store'])->name('tour-destinations.store');
         Route::get('tour-destinations/{destination}/edit', [DestinationController::class, 'edit'])->name('tour-destinations.edit');
         Route::patch('tour-destinations/{destination}', [DestinationController::class, 'update'])->name('tour-destinations.update');
+
+        Route::delete('tour-images/{tour_image}', [TourImageController::class, 'destroy'])->name('tour-images.destroy');
+        Route::post('tour-images/sort', [TourImageController::class, 'sort'])->name('tour-images.sort');
 
         Route::get('contact-messages', ContactMessages::class)->name('contact-messages.index');
     });

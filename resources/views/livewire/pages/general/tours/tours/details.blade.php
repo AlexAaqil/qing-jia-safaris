@@ -32,7 +32,7 @@
                 <a href="{{ Route::has('tours.book') ? route('tours.book', $tour->slug) : '#' }}" class="btn btn_link">Book This Tour</a>
             </div>
 
-            <div class="description">
+            <div class="ckedited_description">
                 {!! $tour->description !!}
             </div>
 
