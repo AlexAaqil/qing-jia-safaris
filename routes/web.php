@@ -22,6 +22,7 @@ use App\Http\Controllers\Tours\DestinationController;
 use App\Http\Controllers\Tours\TourImageController;
 use App\Livewire\Pages\Tours\Bookings\Form as BookTour;
 use App\Livewire\Pages\Tours\Bookings\Success as BookTourSuccess;
+use App\Livewire\Pages\Tours\Bookings\Index as Bookings;
 
 Route::get('/', HomePage::class)->name('home-page');
 Route::get('about', About::class)->name('about-page');
@@ -63,6 +64,8 @@ Route::middleware(['admin_only'])->group(function() {
 
         Route::delete('tour-images/{tour_image}', [TourImageController::class, 'destroy'])->name('tour-images.destroy');
         Route::post('tour-images/sort', [TourImageController::class, 'sort'])->name('tour-images.sort');
+
+        Route::get('bookings', Bookings::class)->name('bookings.index');
 
         Route::get('contact-messages', ContactMessages::class)->name('contact-messages.index');
     });

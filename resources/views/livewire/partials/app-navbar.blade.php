@@ -20,6 +20,7 @@
                 <a href="{{ Route::has('dashboard') ? route('dashboard') : '#' }}" wire:navigate>Dashboard</a>
                 <a href="{{ Route::has('users.index') ? route('users.index') : '#' }}" wire:navigate>Users</a>
                 <a href="{{ Route::has('tours.index') ? route('tours.index') : '#' }}" wire:navigate>Tours</a>
+                <a href="{{ Route::has('bookings.index') ? route('bookings.index') : '#' }}" wire:navigate>Bookings</a>
                 <a href="{{ Route::has('contact-messages.index') ? route('contact-messages.index') : '#' }}" wire:navigate>Messages</a>
 
                 @auth
