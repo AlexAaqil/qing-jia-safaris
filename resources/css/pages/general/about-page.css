@@ -1,39 +1,4 @@
 .AboutPage {
-    .Hero {
-        @apply relative w-full min-h-[30vh] bg-cover bg-center flex items-center justify-center;
-        background-image: url('/public/assets/images/elephants.png');
-
-        &::before {
-            content: '';
-            @apply absolute inset-0 bg-black/50 z-0;
-        }
-
-        .container {
-            @apply relative z-10 text-center text-white;
-
-            h1 {
-                @apply text-4xl font-bold mb-4;
-            }
-
-            .breadcrumbs {
-                @apply flex justify-center items-center text-sm text-white;
-
-                a {
-                    @apply font-semibold hover:font-bold relative;
-
-                    &::after {
-                        content: '/';
-                        @apply mx-2 text-white/70;
-                    }
-                }
-
-                span {
-                    @apply text-white;
-                }
-            }
-        }
-    }
-
     .About {
         @apply py-16;
 

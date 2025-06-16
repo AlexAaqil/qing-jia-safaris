@@ -4,14 +4,6 @@
 </x-slot>
 
 <div class="HomePage">
-    @php
-        $services = [
-            ['name' => 'Game Drives', 'image' => 'assets/images/game-drive.webp'],
-            ['name' => 'Beach Getaways', 'image' => 'assets/images/beach-getaway.png'],
-            ['name' => 'Mountain Climbing', 'image' => 'assets/images/mountain-climbing.webp'],
-            ['name' => 'Walking Safaris', 'image' => 'assets/images/walking-safaris.webp'],
-        ];
-    @endphp
     <section class="Hero">
         <div class="container">
             <div class="image">
@@ -36,19 +28,19 @@
         </div>
     </section>
 
-    <section class="Services">
+    <section class="Destinations">
         <div class="container">
             <div class="section_header">
-                <h2>Activities</h2>
+                <h2>Top Destinations</h2>
             </div>
 
-            <div class="services_list">
-                @foreach($services as $service)
-                    <div class="service">
+            <div class="destinations_list">
+                @foreach($destinations as $destination)
+                    <div class="destination">
                         <div class="image">
-                            <img src="{{ asset($service['image']) }}" alt="{{ $service['name'] }}">
+                            <img src="{{ $destination->image }}" alt="{{ $destination->title }}">
                         </div>
-                        <p>{{ $service['name'] }}</p>
+                        <p>{{ $destination['title'] }}</p>
                     </div>
                 @endforeach
             </div>

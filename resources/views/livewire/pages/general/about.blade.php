@@ -1,5 +1,5 @@
 <div class="AboutPage">
-    <section class="Hero">
+    <section class="CustomJumbotron">
         <div class="container">
             <h1>About Us</h1>
             <div class="breadcrumbs">

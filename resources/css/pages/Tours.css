@@ -26,3 +26,92 @@
         }
     }
 }
+
+.TourDetailsPage {
+    .tour {
+        @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+
+        .images_wrapper {
+            .main_image {
+                .image {
+                    @apply h-[520px];
+
+                    img {
+                        @apply object-contain;
+                    }
+                }
+            }
+
+            .other_images {
+                @apply flex gap-6 mt-6;
+
+                .image {
+                    @apply h-[100px] w-[100px];
+                }
+
+                .thumbnail {
+                    cursor: pointer;
+                    border: 2px solid transparent;
+                    transition: border 0.2s;
+                }
+
+                .thumbnail.active {
+                    border: 2px solid #007bff;
+                }
+            }
+        }
+
+        .content_wrapper {
+            @apply px-2 py-4;
+
+            .title {
+                @apply font-bold text-4xl text-orange-500;
+            }
+
+            .price {
+                @apply text-gray-600 font-bold mt-2;
+            }
+
+            .buttons_group {
+                @apply mt-2;
+            }
+
+            .description {
+                @apply mt-12;
+            }
+
+            .itineraries {
+                @apply mt-12;
+
+                h3 {
+                    @apply text-xl font-bold mb-2;
+                }
+
+                .itinerary {
+                    @apply mb-4;
+
+                    .title,
+                    .description {
+                        @apply px-4;
+                    }
+
+                    .title {
+                        @apply flex justify-between items-center cursor-pointer bg-gray-100 text-lg text-gray-900 rounded-lg py-2;
+                    }
+
+                    .description {
+                        @apply border-b border-gray-200 py-2;
+                    }
+                }
+            }
+        }
+    }
+
+    .other_tours {
+        @apply mt-8;
+
+        h2 {
+            @apply py-4 font-bold text-4xl;
+        }
+    }
+}
