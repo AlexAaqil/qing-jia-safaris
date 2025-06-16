@@ -7,11 +7,13 @@ use App\Models\Tours\Destination;
 
 class Details extends Component
 {
-    public Destination $destination;
+    public $destination;
+    public $other_destinations;
 
-    public function mount(Destination $destination)
+    public function mount(string $destination)
     {
-        $this->destination = $destination;
+        $this->destination = Destination::where('slug', $destination)->firstOrFail();
+        $this->other_destinations = Destination::select('id', 'title', 'slug', 'image')->where('slug', '!=', $this->destination->slug)->inRandomOrder()->take(6)->get();
     }
 
     public function render()

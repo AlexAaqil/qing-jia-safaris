@@ -21,7 +21,7 @@
                         <div class="content">
                             <p class="title">{{ $destination->title }}</p>
                             <div class="button_wrapper">
-                                <a href="#" class="btn_link">View</a>
+                                <a href="{{ Route::has('destination-details-page') ? route('destination-details-page', $destination->slug) : '#' }}" wire:navigate class="btn_link">View</a>
                             </div>
                         </div>
                     </div>
