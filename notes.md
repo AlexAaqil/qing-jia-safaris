@@ -4,13 +4,13 @@
 ~~- fix the inconsistencies with the ck editor when adding and editing tours.~~
 ~~- add a tour categories crud functionality.~~
 ~~- add a destinations table to be used instead of activities.~~
-- add the page for viewing tour details.
-- add the page for viewing destinations details.
+~~- add the page for viewing tour details.~~
+~~- add the page for viewing destinations details.~~
+~~- add feature for deleting existing tour images during editing.~~
+~~- add feature for sorting existing tour images during editing.~~
+~~- fix ckeditor's styles esp the lists.~~
 - add the functionality for booking tours.
-- fix ckeditor's styles esp the lists.
 - add the charts for showing bookings and sales.
-- add feature for deleting existing tour images during editing.
-- add feature for sorting existing tour images during editing.
 
 # Features
 - Authentication with roles.
