@@ -17,7 +17,7 @@
             @php
                 $links = [
                     ['href' => 'home-page', 'text' => 'Home'],
-                    ['href' => 'about-page', 'text' => 'About Us'],
+                    ['href' => 'about-page', 'text' => 'About'],
                     ['href' => 'tours-page', 'text' => 'Tours'],
                     ['href' => 'destinations-page', 'text' => 'Destinations'],
                     ['href' => 'contact-page', 'text' => 'Contact'],
