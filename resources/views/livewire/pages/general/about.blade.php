@@ -20,7 +20,7 @@
                 <p>Client satisfaction and comfort are our highest priorities. From the moment you arrive to your final farewell, we ensure every detail is thoughtfully planned and professionally delivered. Our dedicated team of local guides, drivers, and support staff work tirelessly to provide personalized service, cultural insights, and unforgettable memories.</p>
 
                 <div class="buttons_group">
-                    <a href="{{ Route::has('book-tour') ? route('book-tour') : '#' }}" class="btn" wire:navigate>Book Now</a>
+                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}" class="btn" wire:navigate>Book Now</a>
                     <a href="{{ Route::has('contact-page') ? route('contact-page') : '#' }}" class="btn" wire:navigate>Contact Us</a>
                 </div>
             </div>
