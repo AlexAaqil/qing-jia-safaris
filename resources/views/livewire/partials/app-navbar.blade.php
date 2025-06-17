@@ -3,7 +3,7 @@
         <!-- Branding -->
         <div class="branding">
             <a href="/" wire:navigate>
-                <img src="{{ asset('assets/images/qing-jia-safaris-logo.png') }}" alt="Qing Jia Safaris Logo" width="35">
+                <x-app-logo width="35" />
             </a>
         </div>
 

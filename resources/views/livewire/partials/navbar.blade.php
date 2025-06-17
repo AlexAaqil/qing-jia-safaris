@@ -2,7 +2,7 @@
     <div class="container">
         <div class="branding">
             <a href="/" wire:navigate>
-                <img src="{{ asset('assets/images/qing-jia-safaris-logo.png') }}" alt="Qing Jia Safaris Logo" width="50" height="50">
+                <x-app-logo width="50" height="50" />
                 {{ config('app.name') }}
             </a>
         </div>

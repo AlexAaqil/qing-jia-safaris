@@ -2,7 +2,7 @@
     <div class="container">
         <div class="content">
             <div class="logo">
-                <img src="{{ asset('assets/images/qing-jia-safaris-logo.png') }}" alt="Qing Jia Safaris Logo">
+                <x-app-logo />
             </div>
 
             <div class="branding">
