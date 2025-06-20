@@ -16,9 +16,10 @@
 ~~- add TikTok on the socials~~
 ~~- correct logout functionality for guests navbar~~
 ~~- show currently active page on the navbars~~
+~~- bookings page should be a searchable table by name and booking code~~
 - proper arrangment for tour details page to avoid too much white space
 - send an email to clients after they book a tour with the booking code
-- bookings page should be a searchable table by name and booking code
+- edit tours
 - adjust the validation message for itineraries inputs
 - add the charts for showing bookings and sales
 
