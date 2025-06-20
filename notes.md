@@ -266,7 +266,61 @@ Kenya Safari:
 
 
 # Packages
+---
+## 10-DAY WILDLIFE AND BEACH EXPERIENCE ITINERARY
 
+
+This 10-day Wildlife and Beach Experience combines Kenya’s most thrilling safaris with the serene beauty of Diani’s white-sand beaches. Your adventure begins in the iconic Maasai Mara, where game drives reveal lions, elephants, and the Great Migration (seasonal), followed by visits to Lake Nakuru’s flamingo-filled shores and Amboseli’s elephant herds against the backdrop of Mount Kilimanjaro. Along the way, enjoy optional activities like Maasai village visits, boat rides on Lake Naivasha, and hikes through Hell’s Gate National Park. After six days of wildlife encounters, fly to Diani Beach for pure relaxation, where you’ll unwind with spa treatments, ocean views, and leisurely coastal strolls.
+
+Designed for both adventure and indulgence, this journey includes stays in luxury safari camps and beachfront hotels, ensuring seamless transitions from the wild to the waves. The experience concludes with a flight back to Nairobi, leaving you with unforgettable memories of Kenya’s diverse landscapes—from the savannahs of the Mara to the turquoise waters of the Indian Ocean. Perfect for those seeking the ultimate blend of excitement and tranquillity.
+
+Inclusions
+Transport in a 4×4 Land Cruiser Jeep with a pop-up roof
+Pick up from the Airport/hotel
+Accommodation as per the itinerary
+All meals (BLD)
+Services of our Professional Guide/Driver
+All park entrance fees
+All game drives
+Statutory taxes
+
+Price 480
+
+# 8 Days Samburu – Mt. Kenya – Lake Nakuru – Masai Mara Safari
+The 8-day Safari through Samburu, Mt. Kenya, Lake Nakuru, and Masai Mara offers a diverse and thrilling exploration of Kenya’s stunning landscapes and wildlife.
+
+Begin with game drives in Samburu National Reserve, known for its unique species like the Grevy’s zebra and Somali giraffe. Next, journey to Mt. Kenya, where you can enjoy breathtaking views and explore the scenic highlands.
+
+Continue to Lake Nakuru, famous for its flamingo-filled shores and rhino sanctuary. Conclude your adventure in the Masai Mara, home to the Big Five and the Great Migration.
+
+This safari combines diverse wildlife encounters with dramatic landscapes, providing a comprehensive and unforgettable experience of Kenya’s natural beauty.
+
+
+
+Included in the Safari Cost
+
+    Accommodation as per itinerary
+    Transport and game drives
+    3 meals a day while on safari
+    Services of our Professional Guide/Driver
+    All park entrance fees
+    All game drives
+    Airport Transfers
+
+
+
+Excluded in the Safari Cost
+
+    Personal Insurance
+    Items of personal use
+    Alcoholic & Soft drinks
+    Masai Village (optional)
+    Accommodation in Nairobi
+    Balloon Safari
+    Tips
+
+Price 550
+---
 ## KENYA SAFARI TOUR: 3 DAYS, 2 NIGHTS FROM NAIROBI TO TSAVO WEST AND TSAVO EAST NATIONAL PARKS
 Embark on a thrilling 3-day, 2-night Kenya Safari Tour through Tsavo West and Tsavo East National Parks, starting from Nairobi. Stay in luxurious Lodges within these two remote parks while exploring Kenya’s stunning landscapes and diverse wildlife, including the Big Five and the Tsavo’s famous "Red Elephants." Day one takes you to Tsavo West, featuring the Shetani Lava Flow and Mzima Springs, followed by a game drive. On day two, journey to Tsavo East, home to vast elephant herds, lions, and the Yatta Plateau, before returning to the lodge for a sunset view over the waterhole. The adventure concludes with a final game drive and a scenic transfer to Mombasa’s North or South Coast, reknown for its pristine beaches and rich culture—a perfect end to an unforgettable safari.
 Tsavo West and Tsavo East National Parks, located in southeastern Kenya, together form one of the largest national parks in the world. Their combined size (over 22,000 km²) allows for off-the-beaten-path safaris, fewer crowds, and a more intimate experience with nature compared to more commercial parks like Maasai Mara. The two parks offer an unmatched diversity of landscapes and wildlife.
@@ -432,26 +486,6 @@ Destinations
 Activity
 Travel by
 Accommodations
-
-
-## 10-DAY WILDLIFE AND BEACH EXPERIENCE ITINERARY
-
-
-This 10-day Wildlife and Beach Experience combines Kenya’s most thrilling safaris with the serene beauty of Diani’s white-sand beaches. Your adventure begins in the iconic Maasai Mara, where game drives reveal lions, elephants, and the Great Migration (seasonal), followed by visits to Lake Nakuru’s flamingo-filled shores and Amboseli’s elephant herds against the backdrop of Mount Kilimanjaro. Along the way, enjoy optional activities like Maasai village visits, boat rides on Lake Naivasha, and hikes through Hell’s Gate National Park. After six days of wildlife encounters, fly to Diani Beach for pure relaxation, where you’ll unwind with spa treatments, ocean views, and leisurely coastal strolls.
-
-Designed for both adventure and indulgence, this journey includes stays in luxury safari camps and beachfront hotels, ensuring seamless transitions from the wild to the waves. The experience concludes with a flight back to Nairobi, leaving you with unforgettable memories of Kenya’s diverse landscapes—from the savannahs of the Mara to the turquoise waters of the Indian Ocean. Perfect for those seeking the ultimate blend of excitement and tranquillity.
-
-Inclusions
-Transport in a 4×4 Land Cruiser Jeep with a pop-up roof
-Pick up from the Airport/hotel
-Accommodation as per the itinerary
-All meals (BLD)
-Services of our Professional Guide/Driver
-All park entrance fees
-All game drives
-Statutory taxes
-
-Price 480
 
 ## 10 Days Best Kenya Tanzania Tour
 Embark on a memorable 10-day midrange safari through Kenya and Tanzania, beginning in Nairobi with a scenic drive to the world-renowned Maasai Mara for two days of game drives among abundant wildlife, including the Big Five and, seasonally, the Great Migration. On day three, travel to Lake Naivasha for a relaxing boat ride among hippos and waterbirds, followed by an optional visit to Hell’s Gate National Park or Crescent Island. Day four takes you south to Amboseli National Park, where you’ll enjoy stunning views of Mount Kilimanjaro and observe large elephant herds during game drives. On day five, cross into Tanzania via the Namanga border post and head to Tarangire National Park, known for its giant baobab trees and impressive elephant population. Day six brings a journey to the Serengeti, with a game drive en route, and a full day in this vast and wildlife-rich park on day seven, tracking lions, cheetahs, and possibly witnessing dramatic predator-prey interactions. On day eight, drive to the Ngorongoro Conservation Area, descending into the crater for a day-long safari among rhinos, lions, and flamingos in this UNESCO World Heritage Site. Day nine offers a cultural interlude with a visit to a local Maasai village or the Olduvai Gorge before traveling to the town of Karatu or Mto wa Mbu for the night. Finally, on day ten, return to Arusha for lunch and a transfer back to Nairobi or to Kilimanjaro International Airport, concluding an unforgettable East African adventure. Accommodations are in midrange lodges and tented camps, with en-suite bathrooms, good meals, and expert local guides throughout
