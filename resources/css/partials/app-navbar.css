@@ -35,6 +35,10 @@
                 @apply block py-2 md:py-0 text-white font-semibold hover:text-blue-200 transition-colors;
             }
 
+            a.active {
+                @apply font-bold border-b-2 border-white;
+            }
+
             .mobile_only {
                 @apply md:hidden space-y-2 mt-4;
             }

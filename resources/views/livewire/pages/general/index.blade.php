@@ -6,17 +6,55 @@
 <div class="HomePage">
     <section class="Hero">
         <div class="container">
-            <div class="image">
-                <div class="overlay"></div> {{-- This is the magic layer --}}
+            <div class="hero_wrapper">
+                <div class="overlay"></div>
+
                 <div class="text">
-                    <h1>Qing Jia Safaris</h1>
+                    <h1>{{ config('app.name') }}</h1>
                     <p class="sub_title">{{ config('app.slogan') }}</p>
-                    <p class="punchline">Your trusted gateway to unforgettable adventure across Kenya and Tanzania</p>
+                    <p class="punchline">Your trusted gateway to unforgettable adventures across Kenya and Tanzania</p>
                 </div>
-                <img src="{{ asset('assets/images/elephants.png') }}" alt="Hero Image">
-                <!-- <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
-                    <source src="{{ asset('assets/videos/hero.mp4') }}" type="video/mp4">
-                </video> -->
+
+                <div
+                    class="slideshow"
+                    x-data="{
+                        images: [
+                            '{{ asset('assets/images/elephants.png') }}',
+                            '{{ asset('assets/images/rhinos.jpg') }}',
+                            '{{ asset('assets/images/lions.jpg') }}',
+                            '{{ asset('assets/images/buffalos.jpg') }}',
+                            '{{ asset('assets/images/leopard.jpg') }}',
+                        ],
+                        current: 0,
+                        delay: 5000,
+                        start() {
+                            setInterval(() => {
+                                this.current = (this.current + 1) % this.images.length;
+                            }, this.delay);
+                        }
+                    }"
+                    x-init="start()"
+                >
+                    <template x-for="(image, index) in images" :key="index">
+                        <div
+                            class="absolute inset-0 transition-opacity duration-1000"
+                            x-show="current === index"
+                            x-transition:enter="opacity-0"
+                            x-transition:enter-start="opacity-0"
+                            x-transition:enter-end="opacity-100"
+                            x-transition:leave="opacity-100"
+                            x-transition:leave-start="opacity-100"
+                            x-transition:leave-end="opacity-0"
+                        >
+                            <img
+                                :src="image"
+                                alt="{{ config('app.name') }} Online Shopper"
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+                    </template>
+                </div>
             </div>
         </div>
     </section>
@@ -90,6 +128,11 @@
                 <p>At Qing Jia Safaris, client satisfaction and comfort are our highest priorities. From the moment you arrive to your final farewell, we ensure every detail is thoughtfully planned and professionally delivered.</p>
                 <p>Our dedicated team of local guides, drivers, and support staff work tirelessly to provide personalized service, cultural insights, and unforgettable memories.</p>
                 <p>Book with Qing Jia Safaris today and experience East Africa’s majestic landscapes, diverse wildlife, and vibrant cultures in a way only we can deliver.</p>
+
+                <div class="buttons_group">
+                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}" class="btn">Book a Tour</a>
+                    <a href="{{ Route::has('contact-page') ? route('contact-page') : '#' }}" class="btn">Contact Us</a>
+                </div>
             </div>
         </div>
     </section>

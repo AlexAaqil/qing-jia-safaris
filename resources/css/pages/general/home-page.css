@@ -14,36 +14,40 @@
     }
 
     .Hero {
-        @apply pt-12 pb-8 px-0;
+        @apply py-2 px-0;
 
         .container {
             @apply px-0;
 
-            .image {
-                @apply relative rounded-lg h-[40dvh] md:h-[70dvh];
+            .hero_wrapper {
+                @apply relative px-0 mx-auto h-[40dvh] md:h-[80dvh] rounded-lg;
 
                 .overlay {
-                    @apply rounded-lg absolute inset-0 bg-black/50 z-0;
+                    @apply rounded-lg absolute inset-0 bg-black/60 z-10;
                 }
 
                 .text {
-                    @apply absolute z-10 top-0 left-0 w-full h-full flex flex-col justify-center items-center gap-4 md:gap-6 text-center px-4 text-white;
+                    @apply absolute z-15 top-0 left-0 w-full h-full flex flex-col justify-center items-center gap-4 md:gap-6 text-center px-4 text-white;
 
                     h1 {
                         @apply font-semibold text-sm md:text-base;
                     }
 
                     .sub_title {
-                        @apply text-lg md:text-4xl font-bold;
+                        @apply text-lg md:text-5xl font-bold;
                     }
 
                     .punchline {
-                        @apply text-lg md:text-2xl font-semibold;
+                        @apply text-lg md:text-3xl font-semibold;
                     }
                 }
 
                 img {
                     @apply rounded-lg object-cover w-full h-full;
+                }
+
+                .slideshow {
+                    @apply relative w-full h-[40dvh] md:h-[80dvh] overflow-hidden z-0;
                 }
             }
         }
@@ -129,6 +133,8 @@
             }
 
             .text {
+                @apply md:py-2;
+
                 h2 {
                     @apply mb-8 font-bold text-lg md:text-4xl;
                 }

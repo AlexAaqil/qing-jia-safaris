@@ -51,6 +51,9 @@
                     <a href="{{ config('app.whatsapp') }}">
                         <x-svgs.whatsapp />
                     </a>
+                    <a href="{{ config('app.tiktok') }}">
+                        <x-svgs.tiktok />
+                    </a>
                 </div>
                 <p>Follow us for updates and insights</p>
             </div>

@@ -17,11 +17,26 @@
         <!-- Nav Links -->
         <div :class="{ 'open': open }" class="nav_links" x-cloak>
             <div class="main_links">
-                <a href="{{ Route::has('dashboard') ? route('dashboard') : '#' }}" wire:navigate>Dashboard</a>
-                <a href="{{ Route::has('users.index') ? route('users.index') : '#' }}" wire:navigate>Users</a>
-                <a href="{{ Route::has('tours.index') ? route('tours.index') : '#' }}" wire:navigate>Tours</a>
-                <a href="{{ Route::has('bookings.index') ? route('bookings.index') : '#' }}" wire:navigate>Bookings</a>
-                <a href="{{ Route::has('contact-messages.index') ? route('contact-messages.index') : '#' }}" wire:navigate>Messages</a>
+                @php
+                    $nav_items = [
+                        ['route' => 'dashboard', 'label' => 'Dashboard'],
+                        ['route' => 'users.index', 'label' => 'Users'],
+                        ['route' => 'tours.index', 'label' => 'Tours'],
+                        ['route' => 'bookings.index', 'label' => 'Bookings'],
+                        ['route' => 'contact-messages.index', 'label' => 'Messages'],
+                    ];
+                    $currentRoute = Route::currentRouteName();
+                @endphp
+
+                @foreach ($nav_items as $item)
+                    <a
+                        href="{{ Route::has($item['route']) ? route($item['route']) : '#' }}"
+                        wire:navigate
+                        class="{{ $currentRoute === $item['route'] ? 'active' : '' }}"
+                    >
+                        {{ $item['label'] }}
+                    </a>
+                @endforeach
 
                 @auth
                     <!-- Mobile view -->

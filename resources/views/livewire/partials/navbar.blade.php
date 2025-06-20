@@ -29,7 +29,16 @@
                     <a href="{{ Route::has('dashboard') ? route('dashboard') : '#' }}" wire:navigate>Dashboard</a>
                 @endif
                 @foreach ($links as $link)
-                    <a href="{{ Route::has($link['href']) ? route($link['href']) : '#' }}" wire:navigate>{{ $link['text'] }}</a>
+                    @php
+                        $isActive = Route::currentRouteName() === $link['href'];
+                    @endphp
+                    <a
+                        href="{{ Route::has($link['href']) ? route($link['href']) : '#' }}"
+                        wire:navigate
+                        class="{{ $isActive ? 'active' : '' }}"
+                    >
+                        {{ $link['text'] }}
+                    </a>
                 @endforeach
             </div>
 

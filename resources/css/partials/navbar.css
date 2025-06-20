@@ -20,6 +20,10 @@
                 @apply md:flex md:space-x-8;
             }
 
+            .main_links a.active {
+                @apply text-blue-800 font-bold border-b-2 border-blue-800;
+            }
+
             .other_links {
                 @apply mt-4 md:mt-0;
 

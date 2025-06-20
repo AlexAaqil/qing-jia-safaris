@@ -39,10 +39,6 @@
             .main_image {
                 .image {
                     @apply h-[520px];
-
-                    img {
-                        @apply object-contain;
-                    }
                 }
             }
 
