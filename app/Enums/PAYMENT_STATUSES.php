@@ -2,20 +2,18 @@
 
 namespace App\Enums;
 
-enum BOOKING_STATUSES: int
+enum PAYMENT_STATUSES: int
 {
     case PENDING = 0;
-    case CONFIRMED = 1;
-    case CANCELLED = 2;
-    case COMPLETED = 3;
+    case PAID = 1;
+    case FAILED = 2;
 
     public function label(): string
     {
         return match($this) {
             self::PENDING => 'Pending',
-            self::CONFIRMED => 'Confirmed',
-            self::CANCELLED => 'Cancelled',
-            self::COMPLETED => 'Completed',
+            self::PAID => 'Paid',
+            self::FAILED => 'Failed',
         };
     }
 
