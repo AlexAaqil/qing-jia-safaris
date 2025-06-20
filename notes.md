@@ -17,10 +17,10 @@
 ~~- correct logout functionality for guests navbar~~
 ~~- show currently active page on the navbars~~
 ~~- bookings page should be a searchable table by name and booking code~~
-- proper arrangment for tour details page to avoid too much white space
-- send an email to clients after they book a tour with the booking code
+~~- adjust the validation message for itineraries inputs~~
 - edit tours
-- adjust the validation message for itineraries inputs
+- send an email to clients after they book a tour with the booking code
+- proper arrangment for tour details page to avoid too much white space
 - add the charts for showing bookings and sales
 
 # Features
@@ -125,8 +125,10 @@ bookings {
     unsignedTinyInteger('number_of_children')->nullable();
     date('date_of_travel')->nullable();
     text('additional_information')->nullable();
+    text('comments')->nullable();
     unsignedTinyInteger('status')->nullable();
     unsignedTinyInteger('payment_status')->nullable();
+    unsignedTinyInteger('payment_method')->nullable();
     decimal('total_amount', 10, 2)->nullable();
     decimal('amount_paid', 10, 2)->nullable();
     $table->string('ip_address')->nullable();
@@ -198,8 +200,8 @@ BOOKING_STATUSES = [
 
 PAYMENT_STATUSES = [
     PENDING = 0;
-    PAID = 0;
-    FAILED = 1;
+    PAID = 1;
+    FAILED = 2;
 ]
 
 PAYMENT_METHODS = [
