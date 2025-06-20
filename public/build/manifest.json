@@ -1,15 +1,15 @@
 {
   "public/assets/images/elephants.png": {
-    "file": "assets/elephants-BY2gOt7w.png",
+    "file": "assets/elephants-gbxndMg4.png",
     "src": "public/assets/images/elephants.png"
   },
   "resources/css/app-layout.css": {
-    "file": "assets/app-layout-BksSdrpZ.css",
+    "file": "assets/app-layout-BUmZ04PS.css",
     "src": "resources/css/app-layout.css",
     "isEntry": true
   },
   "resources/css/guest-layout.css": {
-    "file": "assets/guest-layout-Bd4a05le.css",
+    "file": "assets/guest-layout-BhR7Y2me.css",
     "src": "resources/css/guest-layout.css",
     "isEntry": true
   },
