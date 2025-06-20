@@ -43,7 +43,6 @@
                         [
                             'route' => 'contact-messages.index',
                             'label' => 'Messages',
-                            'can' => $user && $user->isAdmin(),
                         ],
                     ];
 

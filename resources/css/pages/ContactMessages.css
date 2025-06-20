@@ -97,6 +97,7 @@
                 }
 
                 .contact_details {
+
                     .contact_info {
                         @apply flex items-center gap-3;
 
