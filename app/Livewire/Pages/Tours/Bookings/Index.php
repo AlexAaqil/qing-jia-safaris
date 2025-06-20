@@ -7,13 +7,21 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public string $search = '';
+    public $confirm_booking_deletion = false;
+    public $booking_to_delete = null;
     public ?string $delete_booking_id = null;
+
+    public string $search = '';
     public bool $showSearchIndicator = false;
 
-    public function confirmBookingDeletion($bookingId)
+    protected $listeners = [
+        'confirm-tour-category-deletion' => 'confirmTourCategoryDeletion',
+    ];
+
+    public function confirmBookingDeletion($data)
     {
-        $this->delete_booking_id = $bookingId;
+        $this->delete_booking_id = $data['booking_id'];
+        $this->dispatch('open-modal', 'confirm-booking-deletion');
     }
 
     public function deleteBooking()
@@ -23,14 +31,15 @@ class Index extends Component
 
             if ($booking) {
                 $booking->delete();
-                $this->dispatch('notify', type: 'success', message: 'Booking deleted successfully');
+
+                $this->delete_booking_id = null;
+
+                $this->dispatch('close-modal', 'confirm-booking-deletion');
+
+                $this->dispatch('notify', type: 'success', message: 'Booking has been deleted');
             } else {
                 $this->dispatch('notify', type: 'error', message: 'Booking not found');
             }
-
-            $this->dispatch('close-modal', 'confirm-booking-deletion');
-
-            $this->delete_booking_id = null;
         }
     }
 

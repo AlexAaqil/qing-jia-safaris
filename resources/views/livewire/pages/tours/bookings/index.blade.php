@@ -72,7 +72,7 @@
                                     </div>
                                     @if(auth()->user()->isAdmin())
                                         <div class="action">
-                                            <button x-data x-on:click="$wire.delete_booking_id = '{{ $booking->uuid }}'; $dispatch('open-modal', 'confirm-booking-deletion')">
+                                            <button x-data=""  x-on:click.prevent="$wire.set('delete_booking_id', '{{ $booking->uuid }}'); $dispatch('open-modal', 'confirm-booking-deletion')">
                                                 <x-svgs.trash class="text-red-600" />
                                             </button>
                                         </div>
@@ -101,7 +101,7 @@
 
     <x-modal name="confirm-booking-deletion" :show="$delete_booking_id !== null" focusable>
         <div class="custom_form">
-            <form wire:submit.prevent="deleteBooking" class="p-6">
+            <form wire:submit="deleteBooking" @submit="$dispatch('close-modal', 'confirm-booking-deletion')" class="p-6">
                 <h2 class="text-lg font-semibold text-gray-900">
                     Confirm Deletion
                 </h2>
