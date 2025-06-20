@@ -80,12 +80,16 @@
                 @apply mt-6;
 
                 p {
-                    @apply grid grid-cols-6 gap-2;
+                    @apply flex gap-2;
 
                     span {
                         &:first-of-type {
-                            @apply col-span-1 font-semibold;
-                        }
+                            @apply font-semibold shrink-0 w-[100px] truncate;
+                          }
+
+                          &:not(:first-of-type) {
+                            @apply flex-1;
+                          }
                     }
                 }
             }
@@ -136,7 +140,7 @@
     }
 
     .other_tours {
-        @apply mt-8;
+        @apply mt-6;
 
         h2 {
             @apply py-4 font-bold text-4xl;

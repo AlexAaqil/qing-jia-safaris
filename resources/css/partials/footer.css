@@ -35,6 +35,12 @@ footer {
                 }
             }
 
+            .quick_links,
+            .packages,
+            .connect {
+                @apply justify-self-center;
+            }
+
             .links {
                 @apply grid gap-2;
 

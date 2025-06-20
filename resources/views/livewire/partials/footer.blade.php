@@ -23,9 +23,11 @@
             <div class="quick_links">
                 <h3>Quick Links</h3>
                 <div class="links">
+                    <a href="{{ Route::has('login') ? route('login') : '#' }}" wire:navigate>Login</a>
+                    <a href="{{ Route::has('home-page') ? route('home-page') : '#' }}" wire:navigate>Home</a>
                     <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}" wire:navigate>About</a>
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}" wire:navigate>Packages</a>
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}" wire:navigate>Tours</a>
+                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}" wire:navigate>Tours</a>
+                    <a href="{{ Route::has('destinations-page') ? route('destinations-page') : '#' }}" wire:navigate>Destinations</a>
                     <a href="{{ Route::has('contact-page') ? route('about-page') : '#' }}" wire:navigate>Contact</a>
                 </div>
             </div>
@@ -33,9 +35,9 @@
             <div class="packages">
                 <h3>Packages</h3>
                 <div class="links">
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Luxury Tours</a>
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Mid-range Tours</a>
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Budget Tours</a>
+                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}">Kenya Tours</a>
+                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}">Tanzania Tours</a>
+                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}">Kenya-Tanzania Tours</a>
                 </div>
             </div>
 
