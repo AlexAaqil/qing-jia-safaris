@@ -18,24 +18,48 @@
         <div :class="{ 'open': open }" class="nav_links" x-cloak>
             <div class="main_links">
                 @php
+                    use App\Enums\USER_ROLES;
+
+                    $user = auth()->user();
+
                     $nav_items = [
-                        ['route' => 'dashboard', 'label' => 'Dashboard'],
-                        ['route' => 'users.index', 'label' => 'Users'],
-                        ['route' => 'tours.index', 'label' => 'Tours'],
-                        ['route' => 'bookings.index', 'label' => 'Bookings'],
-                        ['route' => 'contact-messages.index', 'label' => 'Messages'],
+                        [
+                            'route' => 'dashboard',
+                            'label' => 'Dashboard',
+                        ],
+                        [
+                            'route' => 'users.index',
+                            'label' => 'Users',
+                            'can' => $user && $user->isAdmin(),
+                        ],
+                        [
+                            'route' => 'tours.index',
+                            'label' => 'Tours',
+                        ],
+                        [
+                            'route' => 'bookings.index',
+                            'label' => 'Bookings',
+                        ],
+                        [
+                            'route' => 'contact-messages.index',
+                            'label' => 'Messages',
+                            'can' => $user && $user->isAdmin(),
+                        ],
                     ];
+
                     $currentRoute = Route::currentRouteName();
                 @endphp
 
                 @foreach ($nav_items as $item)
-                    <a
-                        href="{{ Route::has($item['route']) ? route($item['route']) : '#' }}"
-                        wire:navigate
-                        class="{{ $currentRoute === $item['route'] ? 'active' : '' }}"
-                    >
-                        {{ $item['label'] }}
-                    </a>
+                    @if (!isset($item['can']) || $item['can'])
+                        <a
+                            href="{{ Route::has($item['route']) ? route($item['route']) : '#' }}"
+                            wire:navigate
+                            class="{{ $currentRoute === $item['route'] ? 'active' : '' }}"
+                        >
+                            {{ $item['label'] }}
+                        </a>
+                    @endif
                 @endforeach
 
                 @auth

@@ -70,11 +70,13 @@
                                             <x-svgs.edit class="text-green-600" />
                                         </a>
                                     </div>
-                                    <div class="action">
-                                        <button x-data x-on:click="$wire.delete_booking_id = '{{ $booking->uuid }}'; $dispatch('open-modal', 'confirm-booking-deletion')">
-                                            <x-svgs.trash class="text-red-600" />
-                                        </button>
-                                    </div>
+                                    @if(auth()->user()->isAdmin())
+                                        <div class="action">
+                                            <button x-data x-on:click="$wire.delete_booking_id = '{{ $booking->uuid }}'; $dispatch('open-modal', 'confirm-booking-deletion')">
+                                                <x-svgs.trash class="text-red-600" />
+                                            </button>
+                                        </div>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

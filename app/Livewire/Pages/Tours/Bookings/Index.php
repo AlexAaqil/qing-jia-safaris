@@ -28,6 +28,8 @@ class Index extends Component
                 $this->dispatch('notify', type: 'error', message: 'Booking not found');
             }
 
+            $this->dispatch('close-modal', 'confirm-booking-deletion');
+
             $this->delete_booking_id = null;
         }
     }
