@@ -9,8 +9,18 @@
 ~~- add feature for deleting existing tour images during editing.~~
 ~~- add feature for sorting existing tour images during editing.~~
 ~~- fix ckeditor's styles esp the lists.~~
-- add the functionality for booking tours.
-- add the charts for showing bookings and sales.
+~~- tour details images to use cover instead of contain~~
+~~- add the functionality for booking tours.~~
+~~- correct hero text from adventure to adventures~~
+~~- slider on Home Page big five~~
+~~- add TikTok on the socials~~
+~~- correct logout functionality for guests navbar~~
+~~- show currently active page on the navbars~~
+- proper arrangment for tour details page to avoid too much white space
+- send an email to clients after they book a tour with the booking code
+- bookings page should be a searchable table by name and booking code
+- adjust the validation message for itineraries inputs
+- add the charts for showing bookings and sales
 
 # Features
 - Authentication with roles.
