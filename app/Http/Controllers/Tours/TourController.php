@@ -25,7 +25,12 @@ class TourController extends Controller
         $tour = Tour::create($validated_data);
 
         if(!empty($validated_data['itineraries'])) {
-            foreach($validated_data['itineraries'] as $itinerary) {
+            $filtered_itineraries = collect($validated_data['itineraries'])
+            ->filter(function ($itinerary) {
+                return !empty($itinerary['title']) || !empty($itinerary['description']) || !empty($itinerary['day_number']);
+            });
+
+            foreach ($filtered_itineraries as $itinerary) {
                 $tour->itineraries()->create($itinerary);
             }
         }
@@ -62,7 +67,12 @@ class TourController extends Controller
         $tour->itineraries()->delete();
 
         if(!empty($validated_data['itineraries'])) {
-            foreach($validated_data['itineraries'] as $itinerary) {
+            $filtered_itineraries = collect($validated_data['itineraries'])
+                ->filter(function ($itinerary) {
+                    return !empty($itinerary['title']) || !empty($itinerary['description']) || !empty($itinerary['day_number']);
+                });
+
+            foreach ($filtered_itineraries as $itinerary) {
                 $tour->itineraries()->create($itinerary);
             }
         }

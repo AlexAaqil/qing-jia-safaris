@@ -35,14 +35,14 @@ class TourRequest extends FormRequest
             'is_published' => ['boolean'],
             'summary' => ['required','string','max:255'],
             'description' => ['nullable','string'],
-            'duration_days' => ['nullable','integer'],
+            'duration_days' => ['required','integer'],
             'duration_nights' => ['nullable','integer'],
             'currency' => ['required','string','max:3'],
-            'price' => ['nullable','numeric'],
+            'price' => ['required','numeric'],
             'price_ranges_to' => ['nullable','numeric'],
             'tour_category_id' => ['required','exists:tour_categories,id'],
-            'itineraries.*.title' => 'required|string|max:255',
-            'itineraries.*.description' => 'required|string',
+            'itineraries.*.title' => 'nullable|string|max:255',
+            'itineraries.*.description' => 'nullable|string',
             'itineraries.*.day_number' => 'nullable|integer',
             'images.*' => 'nullable|image|max:2048'
         ];
@@ -54,6 +54,7 @@ class TourRequest extends FormRequest
             'title.required' => 'The title is required.',
             'title.unique' => 'This title is already taken. Please choose another.',
             'title.max' => 'Title must not exceed 120 characters.',
+
             'image.*.image' => 'The uploaded file must be an image.',
             'image.*.max' => 'Image must be under 2MB.',
         ];
