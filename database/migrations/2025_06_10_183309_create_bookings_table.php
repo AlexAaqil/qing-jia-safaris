@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->string('booking_code');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('name');
             $table->string('email');
             $table->string('phone_number');
             $table->unsignedTinyInteger('number_of_adults');

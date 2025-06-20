@@ -108,7 +108,7 @@
                                 @endif
                             </p>
                             <div class="button_wrapper">
-                                <a href="#" class="btn_link">View</a>
+                                <a href="{{ Route::has('tour-details-page') ? route('tour-details-page', $tour->slug) : '#' }}" wire:navigate class="btn_link">View</a>
                             </div>
                         </div>
                     </div>
@@ -130,8 +130,8 @@
                 <p>Book with Qing Jia Safaris today and experience East Africa’s majestic landscapes, diverse wildlife, and vibrant cultures in a way only we can deliver.</p>
 
                 <div class="buttons_group">
-                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}" class="btn">Book a Tour</a>
-                    <a href="{{ Route::has('contact-page') ? route('contact-page') : '#' }}" class="btn">Contact Us</a>
+                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}" wire:navigate class="btn">Book a Tour</a>
+                    <a href="{{ Route::has('contact-page') ? route('contact-page') : '#' }}" wire:navigate class="btn">Contact Us</a>
                 </div>
             </div>
         </div>

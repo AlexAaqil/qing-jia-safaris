@@ -14,35 +14,35 @@
             <form wire:submit.prevent="submit" class="space-y-4">
                 <div class="inputs_group">
                     <div class="inputs">
-                        <label class="required">First Name</label>
-                        <input type="text" wire:model="first_name" autofocus />
-                        @error('first_name') <span class="text-red-600">{{ $message }}</span> @enderror
+                        <label for="name" class="required">Full Name</label>
+                        <input type="text" wire:model="name" autofocus />
+                        @error('name') <span class="text-red-600">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="inputs">
-                        <label class="required">Last Name</label>
-                        <input type="text" wire:model="last_name" />
-                        @error('last_name') <span class="text-red-600">{{ $message }}</span> @enderror
-                    </div>
-                </div>
-
-                <div class="inputs_group">
-                    <div class="inputs">
-                        <label class="required">Email</label>
+                        <label for="email" class="required">Email</label>
                         <input type="email" wire:model="email" />
                         @error('email') <span class="text-red-600">{{ $message }}</span> @enderror
                     </div>
+                </div>
 
+                <div class="inputs_group">
                     <div class="inputs">
-                        <label class="required">Phone Number</label>
+                        <label for="phone_number" class="required">Phone Number</label>
                         <input type="text" wire:model="phone_number" />
                         @error('phone_number') <span class="text-red-600">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="inputs">
+                        <label for="date_of_travel">Date of Travel</label>
+                        <input type="date" wire:model="date_of_travel" />
+                        @error('date_of_travel') <span class="text-red-600">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
                 <div class="inputs_group">
                     <div class="inputs">
-                        <label class="required">Adults</label>
+                        <label for="number_of_adults" class="required">Adults</label>
                         <input type="number" wire:model="number_of_adults" min="1" />
                         @error('number_of_adults') <span class="text-red-600">{{ $message }}</span> @enderror
                     </div>
@@ -55,19 +55,16 @@
                 </div>
 
                 <div class="inputs">
-                    <label for="date_of_travel">Date of Travel</label>
-                    <input type="date" wire:model="date_of_travel" />
-                    @error('date_of_travel') <span class="text-red-600">{{ $message }}</span> @enderror
-                </div>
-
-                <div class="inputs">
                     <label for="additional_information">Additional Information</label>
                     <textarea wire:model="additional_information"></textarea>
                     @error('additional_information') <span class="text-red-600">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
-                    <button type="submit" class="btn btn_primary w-full">Book Tour</button>
+                    <button type="submit" class="btn btn_primary w-full">
+                        <span wire:loading.remove>Book Tour</span>
+                        <span wire:loading>Booking...</span>
+                    </button>
                 </div>
             </form>
         </div>

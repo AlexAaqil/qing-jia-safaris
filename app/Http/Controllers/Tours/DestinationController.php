@@ -76,7 +76,7 @@ class DestinationController extends Controller
             $new_path = "tour-destinations/images/{$new_image_name}";
 
             if (!Storage::disk('public')->exists($old_path)) {
-                Log::channel('tour_destinations')->info("Image file does not exist at $old_path. Rename skipped.");
+                Log::channel('tours')->info("Image file does not exist at $old_path. Rename skipped.");
             } else {
                 Storage::disk('public')->move($old_path, $new_path);
                 $validated_data['image'] = $new_image_name;

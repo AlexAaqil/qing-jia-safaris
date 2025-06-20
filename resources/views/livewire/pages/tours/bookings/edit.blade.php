@@ -3,7 +3,7 @@
         <h2>Edit Booking</h2>
     </div>
 
-    <form wire:submit="updateBooking" enctype="multipart/form-data">
+    <form wire:submit.prevent="updateBooking" enctype="multipart/form-data">
         <div class="form_details">
             <p>
                 <span>Name</span>
@@ -59,54 +59,54 @@
                 <select wire:model="status" id="status">
                     <option value="">Select Booking Status</option>
                     @foreach(\App\Enums\BOOKING_STATUSES::labels() as $value => $label)
-                        <option value="{{ $value }}" {{ $value === $booking->status ? 'selected' : '' }}>{{ $label }}</option>
+                        <option value="{{ $value }}">{{ $label }}</option>
                     @endforeach
                 </select>
+                <x-form-input-error field="status" />
             </div>
 
             <div class="inputs">
                 <label for="date_of_travel">Travel Date</label>
-                <input type="date" wire:model="date_of_travel" id="date_of_travel" value="{{ $booking->date_of_travel->format('Y-m-d') }}">
+                <input type="date" wire:model="date_of_travel" id="date_of_travel">
+                <x-form-input-error field="date_of_travel" />
             </div>
         </div>
 
         <div class="inputs_group_3">
             <div class="inputs">
                 <label for="total_amount">Total Amount</label>
-                <input type="number" wire:model="total_amount" id="total_amount" value="{{ $booking->total_amount }}">
+                <input type="number" wire:model="total_amount" id="total_amount" min="0">
+                <x-form-input-error field="total_amount" />
             </div>
 
             <div class="inputs">
                 <label for="amount_paid">Amount Paid</label>
-                <input type="number" wire:model="amount_paid" id="amount_paid" value="{{ $booking->amount_paid }}">
+                <input type="number" wire:model="amount_paid" id="amount_paid" min="0">
+                <x-form-input-error field="amount_paid" />
             </div>
 
             <div class="inputs">
-                <label for="status">Payment Status</label>
-                <select wire:model="status" id="status">
+                <label for="payment_status">Payment Status</label>
+                <select wire:model="payment_status" id="payment_status">
                     <option value="">Select Payment Status</option>
                     @foreach(\App\Enums\PAYMENT_STATUSES::labels() as $value => $label)
-                        <option value="{{ $value }}" {{ $value === $booking->payment_status ? 'selected' : '' }}>{{ $label }}</option>
+                        <option value="{{ $value }}">{{ $label }}</option>
                     @endforeach
                 </select>
+                <x-form-input-error field="payment_status" />
             </div>
         </div>
 
         <div class="inputs">
             <label for="comments">Comments</label>
-            <textarea wire:model="comments" id="ckeditor" rows="4">{{ $booking->comments }}</textarea>
+            <textarea wire:model="comments" rows="4"></textarea>
+            <x-form-input-error field="comments" />
         </div>
 
         <div class="buttons_group">
-            <button type="submit" wire:loading.attr="disabled" wire:target="updateBooking">
-                <span wire:loading.remove wire:target="updateBooking">Update Booking</span>
-                <span wire:loading wire:target="updateBooking">Saving Booking...</span>
-            </button>
-            <a href="{{ Route::has('tours-bookings.index') ? route('tours-bookings.index') : '#' }}" wire:navigate class="btn btn_danger">Cancel</a>
+            <button type="submit">Update Booking</button>
+
+            <a href="{{ Route::has('bookings.index') ? route('bookings.index') : '#' }}" wire:navigate class="btn btn_danger">Cancel</a>
         </div>
     </form>
 </div>
-
-<x-slot name="scripts">
-    <x-livewire-ckeditor />
-</x-slot>

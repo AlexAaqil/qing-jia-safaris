@@ -9,13 +9,31 @@
             </div>
 
             <div class="search">
-                <input type="text" x-model="input" placeholder="Search..." @keydown.enter="$wire.set('search', input)">
-                <div wire:loading wire:target="search">Searching...</div>
+                <div class="search-container">
+                    <input
+                        type="text"
+                        wire:model="search"
+                        placeholder="Search by name, email, tour..."
+                        wire:keydown.enter="performSearch"
+                        wire:change="performSearch"
+                        class="input-search"
+                    >
+                    @if($search)
+                        <button wire:click="clearSearch" class="clear-search">
+                            ✕
+                        </button>
+                    @endif
+                </div>
+
+                <!-- Search indicator -->
+                @if($showSearchIndicator)
+                    <div class="searching-indicator">
+                        Searching...
+                    </div>
+                @endif
             </div>
 
-            <div class="button">
-
-            </div>
+            <div class="button"></div>
         </div>
 
         <div class="bookings_list">
@@ -40,7 +58,7 @@
                             <tr>
                                 <td class="numbering">{{ $loop->iteration }}</td>
                                 <td>{{ $booking->booking_code }}</td>
-                                <td>{{ $booking->first_name }} {{ $booking->last_name }}</td>
+                                <td>{{ $booking->name }}</td>
                                 <td>{{ $booking->email }}</td>
                                 <td>{{ $booking->phone_number }}</td>
                                 <td>{{ Str::words($booking->tour->title, 4) }}</td>
@@ -53,7 +71,7 @@
                                         </a>
                                     </div>
                                     <div class="action">
-                                        <button x-data="" x-on:click.prevent="$wire.set('delete_booking_id', '{{ $booking->uuid }}'); $dispatch('open-modal', 'confirm-booking-deletion')">
+                                        <button x-data x-on:click="$wire.delete_booking_id = '{{ $booking->uuid }}'; $dispatch('open-modal', 'confirm-booking-deletion')">
                                             <x-svgs.trash class="text-red-600" />
                                         </button>
                                     </div>
@@ -61,7 +79,16 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8">No bookings found.</td>
+                                <td colspan="9" class="text-center py-4">
+                                    @if($search)
+                                        No bookings found for "{{ $search }}"
+                                        <button wire:click="clearSearch" class="text-blue-500 hover:underline ml-2">
+                                            Show all
+                                        </button>
+                                    @else
+                                        No bookings available
+                                    @endif
+                                </td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -72,7 +99,7 @@
 
     <x-modal name="confirm-booking-deletion" :show="$delete_booking_id !== null" focusable>
         <div class="custom_form">
-            <form wire:submit="deleteBooking" @submit="$dispatch('close-modal', 'confirm-booking-deletion')" class="p-6">
+            <form wire:submit.prevent="deleteBooking" class="p-6">
                 <h2 class="text-lg font-semibold text-gray-900">
                     Confirm Deletion
                 </h2>
@@ -94,4 +121,3 @@
         </div>
     </x-modal>
 </div>
-
