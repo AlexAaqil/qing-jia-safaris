@@ -63,7 +63,7 @@ class Tour extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(TourCategory::class);
+        return $this->belongsTo(TourCategory::class, 'tour_category_id');
     }
 
     public function itineraries(): HasMany

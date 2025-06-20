@@ -40,7 +40,7 @@ class TourCategory extends Model
 
     public function tours(): HasMany
     {
-        return $this->hasMany(Tour::class);
+        return $this->hasMany(Tour::class, 'tour_category_id');
     }
 
     public function getImageAttribute()

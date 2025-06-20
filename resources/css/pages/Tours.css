@@ -62,46 +62,74 @@
         }
 
         .content_wrapper {
-            @apply px-2 py-2;
+            @apply px-2 py-2 md:py-8;
 
             .title {
                 @apply font-bold text-4xl;
             }
 
             .price {
-                @apply text-gray-600 font-bold mt-4;
+                @apply text-gray-700 font-bold text-2xl mt-6;
             }
 
-            .buttons_group {
-                @apply mt-4;
+            .summary {
+                @apply text-base mt-6;
             }
 
-            .ckedited_description {
-                @apply mt-12;
+            .extra_details {
+                @apply mt-6;
+
+                p {
+                    @apply grid grid-cols-6 gap-2;
+
+                    span {
+                        &:first-of-type {
+                            @apply col-span-1 font-semibold;
+                        }
+                    }
+                }
             }
 
-            .itineraries {
-                @apply mt-12;
+            .action_btn {
+                @apply mt-8;
 
-                h3 {
-                    @apply text-xl font-bold mb-2;
+                .buttons_group {
+                    .btn {
+                        @apply bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg tracking-wide;
+                    }
+                }
+            }
+        }
+    }
+
+    .tour_details_wrapper {
+        @apply w-[95dvw];
+
+        .ckedited_description {
+            @apply mt-8;
+        }
+
+        .itineraries {
+            @apply mt-8;
+
+            h3 {
+                @apply text-xl font-bold mb-2;
+            }
+
+            .itinerary {
+                @apply mb-4;
+
+                .title,
+                .description {
+                    @apply px-4;
                 }
 
-                .itinerary {
-                    @apply mb-4;
+                .title {
+                    @apply flex justify-between items-center cursor-pointer bg-gray-100 text-lg text-gray-900 rounded-lg py-2;
+                }
 
-                    .title,
-                    .description {
-                        @apply px-4;
-                    }
-
-                    .title {
-                        @apply flex justify-between items-center cursor-pointer bg-gray-100 text-lg text-gray-900 rounded-lg py-2;
-                    }
-
-                    .description {
-                        @apply border-b border-gray-200 py-2;
-                    }
+                .description {
+                    @apply border-b border-gray-200 py-2;
                 }
             }
         }

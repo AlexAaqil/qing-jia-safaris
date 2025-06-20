@@ -41,9 +41,9 @@ class TourRequest extends FormRequest
             'price' => ['required','numeric'],
             'price_ranges_to' => ['nullable','numeric'],
             'tour_category_id' => ['required','exists:tour_categories,id'],
-            'itineraries.*.title' => 'nullable|string|max:255',
-            'itineraries.*.description' => 'nullable|string',
-            'itineraries.*.day_number' => 'nullable|integer',
+            'itineraries.*.title' => 'required|string|max:255',
+            'itineraries.*.description' => 'required|string',
+            'itineraries.*.day_number' => 'required|integer',
             'images.*' => 'nullable|image|max:2048'
         ];
     }
@@ -54,6 +54,10 @@ class TourRequest extends FormRequest
             'title.required' => 'The title is required.',
             'title.unique' => 'This title is already taken. Please choose another.',
             'title.max' => 'Title must not exceed 120 characters.',
+
+            'itineraries.*.title.required' => 'Title must be filled',
+            'itineraries.*.description.required' => 'Description must be filled',
+            'itineraries.*.day_number.required' => 'Day Number must be filled',
 
             'image.*.image' => 'The uploaded file must be an image.',
             'image.*.max' => 'Image must be under 2MB.',
