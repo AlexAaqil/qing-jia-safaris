@@ -27,6 +27,18 @@
             {{ $slot }}
         </main>
 
+        {{-- Livewire --}}
+        @livewireScripts
+
+        {{-- Dynamic Scripts --}}
+        @isset($scripts)
+            {{ $scripts }}
+        @endisset
         @stack('scripts')
+
+        @isset($afterScripts)
+            {{ $afterScripts }}
+        @endisset
+        @stack('after-scripts')
     </body>
 </html>

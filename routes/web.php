@@ -23,6 +23,7 @@ use App\Http\Controllers\Tours\TourImageController;
 use App\Livewire\Pages\Tours\Bookings\Form as BookTour;
 use App\Livewire\Pages\Tours\Bookings\Success as BookTourSuccess;
 use App\Livewire\Pages\Tours\Bookings\Index as Bookings;
+use App\Livewire\Pages\Tours\Bookings\Edit as EditBookings;
 
 Route::get('/', HomePage::class)->name('home-page');
 Route::get('about', About::class)->name('about-page');
@@ -66,6 +67,7 @@ Route::middleware(['admin_only'])->group(function() {
         Route::post('tour-images/sort', [TourImageController::class, 'sort'])->name('tour-images.sort');
 
         Route::get('bookings', Bookings::class)->name('bookings.index');
+        Route::get('bookings/{booking}/edit', EditBookings::class)->name('bookings.edit');
 
         Route::get('contact-messages', ContactMessages::class)->name('contact-messages.index');
     });
