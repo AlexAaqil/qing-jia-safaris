@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone_number')->nullable();
             $table->string('secondary_phone_number')->nullable();
-            $table->string('role')->default(3);
-            $table->string('status')->default(1);
+            $table->unsignedTinyInteger('role')->default(3);
+            $table->boolean('status')->default(true);
+            $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
