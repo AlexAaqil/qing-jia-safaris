@@ -41,6 +41,12 @@
                     }
                 }
             }
+
+            .search {
+                input {
+                    @apply border border-gray-400 rounded-sm px-2 py-1;
+                }
+            }
         }
     }
 
@@ -120,6 +126,7 @@
 
 @import './components/buttons.css';
 @import './components/forms.css';
+@import './components/tables.css';
 
 @import './partials/app-navbar.css';
 
