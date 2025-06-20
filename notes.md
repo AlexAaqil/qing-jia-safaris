@@ -18,8 +18,8 @@
 ~~- show currently active page on the navbars~~
 ~~- bookings page should be a searchable table by name and booking code~~
 ~~- adjust the validation message for itineraries inputs~~
+~~- send an email to clients after they book a tour with the booking code~~
 - edit tours
-- send an email to clients after they book a tour with the booking code
 - proper arrangment for tour details page to avoid too much white space
 - add the charts for showing bookings and sales
 
