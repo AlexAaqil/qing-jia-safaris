@@ -15,7 +15,7 @@ enum USER_ROLES: int
             self::SUPER_ADMIN => 'Super Admin',
             self::ADMIN => 'Admin',
             self::OWNER => 'Owner',
-            self::USER => 'User',
+            self::USER => 'Staff',
         };
     }
 
@@ -28,5 +28,13 @@ enum USER_ROLES: int
         }
 
         return $labels;
+    }
+
+    public static function adminLabels(): array
+    {
+        return [
+            self::ADMIN->value => self::ADMIN->label(),
+            self::USER->value => self::USER->label(),
+        ];
     }
 }

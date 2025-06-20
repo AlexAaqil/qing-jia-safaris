@@ -56,18 +56,25 @@ class Index extends Component
 
     public function render()
     {
-        $users = User::orderBy('first_name')->paginate(50);
+        $auth_user = auth()->user();
+
+        $query = User::query();
+
+        if($auth_user->role === USER_ROLES::SUPER_ADMIN) {
+            $query->orderBy('first_name');
+        } else {
+            $query->where('role', '!=', USER_ROLES::SUPER_ADMIN)->orderBy('first_name');
+        }
+
+        $users = $query->paginate(50);
+
         $count_users = User::count();
-        $count_super_admins = User::where('role', USER_ROLES::SUPER_ADMIN->value)->count();
         $count_admins = User::where('role', USER_ROLES::ADMIN->value)->count();
-        $count_owners = User::where('role', USER_ROLES::OWNER->value)->count();
 
         return view('livewire.pages.users.index', compact(
             'users',
             'count_users',
-            'count_super_admins',
             'count_admins',
-            'count_owners',
         ));
     }
 }

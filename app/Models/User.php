@@ -71,6 +71,7 @@ class User extends Authenticatable
             USER_ROLES::SUPER_ADMIN,
             USER_ROLES::ADMIN,
             USER_ROLES::OWNER,
+            USER_ROLES::USER,
         ]);
     }
 

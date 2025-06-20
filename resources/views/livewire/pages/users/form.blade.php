@@ -26,7 +26,7 @@
             <label for="role" class="required">Role</label>
             <select wire:model="role" id="role">
                 <option value="">Select a role</option>
-                @foreach(\App\Enums\USER_ROLES::labels() as $value => $label)
+                @foreach(\App\Enums\USER_ROLES::adminLabels() as $value => $label)
                     <option value="{{ $value }}" {{ $value == \App\Enums\USER_ROLES::USER->value ? 'selected' : '' }}>
                         {{ $label }}
                     </option>

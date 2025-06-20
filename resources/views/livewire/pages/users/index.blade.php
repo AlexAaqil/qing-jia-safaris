@@ -5,9 +5,7 @@
                 <h2>Users</h2>
                 <div class="stats">
                     <span>{{ $count_users }} {{ Str::plural('user', $count_users) }}</span>
-                    <span>{{ $count_super_admins }} {{ Str::plural('super admin', $count_super_admins) }}</span>
                     <span>{{ $count_admins }} {{ Str::plural('admin', $count_admins) }}</span>
-                    <span>{{ $count_owners }} {{ Str::plural('owner', $count_owners) }}</span>
                 </div>
             </div>
 
