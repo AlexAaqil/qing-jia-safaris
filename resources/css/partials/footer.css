@@ -38,7 +38,7 @@ footer {
             .quick_links,
             .packages,
             .connect {
-                @apply justify-self-center;
+                @apply lg:justify-self-center;
             }
 
             .links {

@@ -52,14 +52,14 @@
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 translate-y-1"
         @click.outside="open = false"
-        class="absolute left-0 mt-2 w-56 md:w-64 bg-white shadow-xl rounded-lg z-50 py-4 px-4 flex flex-col space-y-4 border border-gray-200"
+        class="absolute left-0 mt-2 w-56 md:w-64 bg-white shadow-xl rounded-lg z-50 py-4 px-4 flex flex-col space-y-4 lg:space-y-6 border border-gray-200"
         style="display: none;"
     >
         <!-- Optional: Link to all tours -->
         <a
             href="{{ route('tours-page') }}"
             wire:navigate
-            class="block text-sm text-gray-800 hover:text-primary hover:underline"
+            class="block text-sm lg:text-base text-gray-800 hover:text-primary hover:underline"
         >
             All Tours
         </a>
@@ -69,7 +69,7 @@
             <a
                 href="{{ route('categorized-tours-page', ['category' => $category->slug]) }}"
                 wire:navigate
-                class="block text-sm text-gray-800 hover:text-primary hover:underline"
+                class="block text-sm lg:text-base text-gray-800 hover:text-primary hover:underline"
             >
                 {{ Str::title($category->title) }}
             </a>
