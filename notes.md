@@ -20,8 +20,8 @@
 ~~- adjust the validation message for itineraries inputs~~
 ~~- send an email to clients after they book a tour with the booking code~~
 ~~- edit tours~~
-- fix the delete modal on bookings.index page
-- proper arrangment for tour details page to avoid too much white space
+~~- fix the delete modal on bookings.index page~~
+~~- proper arrangment for tour details page to avoid too much white space~~
 - add the charts for showing bookings and sales
 
 # Features
