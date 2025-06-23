@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('tour_itineraries', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->string('title')->unique();
+            $table->string('title');
             $table->text('description');
             $table->unsignedTinyInteger('day_number');
 
             $table->foreignId('tour_id')->constrained('tours')->onDelete('cascade');
+            $table->unique(['tour_id', 'day_number']);
             $table->timestamps();
         });
     }

@@ -184,6 +184,20 @@
     }
 }
 
+#itineraries-wrapper {
+    .itinerary-row {
+        .inputs_group_3 {
+            @apply grid grid-cols-12 gap-4;
+
+            .inputs {
+                &:nth-child(1) { @apply col-span-1; }
+                &:nth-child(2) { @apply col-span-5; }
+                &:nth-child(3) { @apply col-span-6; }
+            }
+        }
+    }
+}
+
 .Bookings {
     .container {
         .bookings {

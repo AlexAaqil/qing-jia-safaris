@@ -115,28 +115,9 @@
 
             <div class="inputs mt-12">
                 <h3>Itineraries</h3>
-                <div id="itineraries-wrapper" data-itinerary-index="{{ $existingIteneraryCount }}">
-                    @foreach (old('itineraries', $tour->itineraries) as $index => $itinerary)
-                        <div class="itinerary-row border rounded-sm p-2 my-4">
-                            <div class="inputs_group_3">
-                                <div class="inputs">
-                                    <label>Day Number</label>
-                                    <input type="number" name="itineraries[{{ $index }}][day_number]" value="{{ old("itineraries.$index.day_number", $itinerary['day_number']) }}">
-                                    <x-form-input-error field="itineraries.{{ $index }}.day_number" />
-                                </div>
-                                <div class="inputs">
-                                    <label>Title</label>
-                                    <input type="text" name="itineraries[{{ $index }}][title]" value="{{ old("itineraries.$index.title", $itinerary['title']) }}">
-                                    <x-form-input-error field="itineraries.{{ $index }}.title" />
-                                </div>
-                                <div class="inputs">
-                                    <label>Description</label>
-                                    <textarea name="itineraries[{{ $index }}][description]">{{ old("itineraries.$index.description", $itinerary['description']) }}</textarea>
-                                    <x-form-input-error field="itineraries.{{ $index }}.description" />
-                                </div>
-                            </div>
-                            <button type="button" class="btn_danger remove-itinerary">Remove</button>
-                        </div>
+                <div id="itineraries-wrapper" data-itinerary-index="{{ count(old('itineraries', $tour->itineraries->toArray())) }}">
+                    @foreach (old('itineraries', $tour->itineraries->toArray()) as $index => $itinerary)
+                        @include('partials.tour-itinerary-row', ['index' => $index, 'itinerary' => $itinerary])
                     @endforeach
                 </div>
                 <button type="button" id="add-itinerary" class="btn_transparent">+ Add Itinerary</button>
@@ -159,7 +140,7 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const wrapper = document.getElementById('itineraries-wrapper');
-                let itineraryIndex = parseInt(wrapper.dataset.itineraryIndex);
+                let itineraryIndex = parseInt(wrapper.dataset.itineraryIndex || 0);
 
                 document.getElementById('add-itinerary').addEventListener('click', function () {
                     const newRow = document.createElement('div');
@@ -190,20 +171,6 @@
                 wrapper.addEventListener('click', function (e) {
                     if (e.target.classList.contains('remove-itinerary')) {
                         e.target.closest('.itinerary-row').remove();
-                    }
-                });
-
-                // Optional: Prevent duplicate day numbers on submit
-                document.getElementById('tour-form').addEventListener('submit', function (e) {
-                    const dayInputs = wrapper.querySelectorAll('input[name*="[day_number]"]');
-                    const dayNumbers = Array.from(dayInputs)
-                        .map(input => parseInt(input.value))
-                        .filter(val => !isNaN(val));
-
-                    const unique = new Set(dayNumbers);
-                    if (unique.size !== dayNumbers.length) {
-                        e.preventDefault();
-                        alert('Duplicate day numbers found in itineraries. Please fix them before submitting.');
                     }
                 });
             });

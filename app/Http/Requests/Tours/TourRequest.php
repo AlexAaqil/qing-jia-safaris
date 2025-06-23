@@ -41,10 +41,24 @@ class TourRequest extends FormRequest
             'price' => ['required','numeric'],
             'price_ranges_to' => ['nullable','numeric'],
             'tour_category_id' => ['required','exists:tour_categories,id'],
-            'itineraries.*.title' => 'required|string|max:255',
-            'itineraries.*.description' => 'required|string',
-            'itineraries.*.day_number' => 'required|integer',
-            'images.*' => 'nullable|image|max:2048'
+
+            'images.*' => 'nullable|image|max:2048',
+
+            'itineraries' => ['nullable', 'array'], // <-- prevents structure errors
+
+            'itineraries.*.title' => [
+                'required_with:itineraries.*.day_number,itineraries.*.description',
+                'string',
+                'max:255',
+            ],
+            'itineraries.*.description' => [
+                'required_with:itineraries.*.title,itineraries.*.day_number',
+                'string',
+            ],
+            'itineraries.*.day_number' => [
+                'required_with:itineraries.*.title,itineraries.*.description',
+                'integer',
+            ],
         ];
     }
 
@@ -55,9 +69,10 @@ class TourRequest extends FormRequest
             'title.unique' => 'This title is already taken. Please choose another.',
             'title.max' => 'Title must not exceed 120 characters.',
 
-            'itineraries.*.title.required' => 'Title must be filled',
-            'itineraries.*.description.required' => 'Description must be filled',
-            'itineraries.*.day_number.required' => 'Day Number must be filled',
+            'itineraries.*.title.required_with' => 'Please fill in the itinerary title.',
+            'itineraries.*.description.required_with' => 'Please provide a description.',
+            'itineraries.*.day_number.required_with' => 'Please provide a day number.',
+            'itineraries.*.day_number.integer' => 'Day number must be a number like 1, 2, 3...',
 
             'image.*.image' => 'The uploaded file must be an image.',
             'image.*.max' => 'Image must be under 2MB.',

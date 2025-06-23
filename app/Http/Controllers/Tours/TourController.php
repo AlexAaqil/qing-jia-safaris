@@ -24,15 +24,17 @@ class TourController extends Controller
 
         $tour = Tour::create($validated_data);
 
-        if(!empty($validated_data['itineraries'])) {
-            $filtered_itineraries = collect($validated_data['itineraries'])
-            ->filter(function ($itinerary) {
-                return !empty($itinerary['title']) || !empty($itinerary['description']) || !empty($itinerary['day_number']);
-            });
+        if (!empty($validated_data['itineraries'])) {
+            $itineraries = collect($validated_data['itineraries'])
+                ->sortBy('day_number')
+                ->values()
+                ->map(function ($itinerary, $index) {
+                    // Ensure day numbers are sequential
+                    $itinerary['day_number'] = $index + 1;
+                    return $itinerary;
+                });
 
-            foreach ($filtered_itineraries as $itinerary) {
-                $tour->itineraries()->create($itinerary);
-            }
+            $tour->itineraries()->createMany($itineraries->toArray());
         }
 
         if($request->hasFile('images')) {
@@ -64,17 +66,19 @@ class TourController extends Controller
 
         $tour->update($validated_data);
 
-        $tour->itineraries()->delete();
-
-        if(!empty($validated_data['itineraries'])) {
-            $filtered_itineraries = collect($validated_data['itineraries'])
-                ->filter(function ($itinerary) {
-                    return !empty($itinerary['title']) || !empty($itinerary['description']) || !empty($itinerary['day_number']);
+        if (!empty($validated_data['itineraries'])) {
+            $itineraries = collect($validated_data['itineraries'])
+                ->sortBy('day_number')
+                ->values()
+                ->map(function ($itinerary, $index) {
+                    $itinerary['day_number'] = $index + 1;
+                    return $itinerary;
                 });
 
-            foreach ($filtered_itineraries as $itinerary) {
-                $tour->itineraries()->create($itinerary);
-            }
+            $tour->itineraries()->delete();
+            $tour->itineraries()->createMany($itineraries->toArray());
+        } else {
+            $tour->itineraries()->delete();
         }
 
         if($request->hasFile('images')) {

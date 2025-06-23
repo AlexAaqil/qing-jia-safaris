@@ -94,39 +94,11 @@
 
             <div class="inputs mt-12">
                 <h3>Itineraries</h3>
-                <div id="itineraries-wrapper">
-                    <div class="iteneraries_wrapper border rounded-sm p-2 my-4 itinerary-row">
-                    @php
-                        $oldItineraries = old('itineraries', [ [] ]); // At least one empty row by default
-                    @endphp
-
-                    @foreach ($oldItineraries as $index => $itinerary)
-                        <div class="itinerary-row border rounded-sm p-2 my-4">
-                            <div class="inputs_group_3">
-                                <div class="inputs">
-                                    <label>Day Number</label>
-                                    <input type="number" name="itineraries[{{ $index }}][day_number]" placeholder="Day Number"
-                                        value="{{ old("itineraries.$index.day_number", $itinerary['day_number'] ?? '') }}">
-                                    <x-form-input-error field="itineraries.{{ $index }}.day_number" />
-                                </div>
-
-                                <div class="inputs">
-                                    <label>Title</label>
-                                    <input type="text" name="itineraries[{{ $index }}][title]" placeholder="Title"
-                                        value="{{ old("itineraries.$index.title", $itinerary['title'] ?? '') }}">
-                                    <x-form-input-error field="itineraries.{{ $index }}.title" />
-                                </div>
-
-                                <div class="inputs">
-                                    <label>Description</label>
-                                    <textarea name="itineraries[{{ $index }}][description]" placeholder="Description">{{ old("itineraries.$index.description", $itinerary['description'] ?? '') }}</textarea>
-                                    <x-form-input-error field="itineraries.{{ $index }}.description" />
-                                </div>
-                            </div>
-                            <button type="button" class="btn_danger remove-itinerary">Remove</button>
-                        </div>
+                <div id="itineraries-wrapper" data-itinerary-index="0">
+                    {{-- No itineraries by default --}}
+                    @foreach (old('itineraries', []) as $index => $itinerary)
+                        @include('partials.tour-itinerary-row', ['index' => $index, 'itinerary' => $itinerary])
                     @endforeach
-                    </div>
                 </div>
                 <button type="button" id="add-itinerary" class="btn_transparent">+ Add Itinerary</button>
             </div>
@@ -141,41 +113,41 @@
     @push('scripts')
         <x-ckeditor />
         <script>
-            let itineraryIndex = document.querySelectorAll('.itinerary-row').length;
-
-            document.getElementById('add-itinerary').addEventListener('click', function () {
+            document.addEventListener('DOMContentLoaded', function () {
                 const wrapper = document.getElementById('itineraries-wrapper');
+                let itineraryIndex = parseInt(wrapper.dataset.itineraryIndex || 0);
 
-                const newRow = document.createElement('div');
-                newRow.classList.add('iteneraries_wrapper', 'border', 'rounded-sm', 'p-2', 'my-4', 'itinerary-row');
-                newRow.innerHTML = `
-                    <div class="inputs_group_3">
-                        <div class="inputs">
-                            <label>Day Number</label>
-                            <input type="number" name="itineraries[${itineraryIndex}][day_number]" placeholder="Day Number" />
+                document.getElementById('add-itinerary').addEventListener('click', function () {
+                    const newRow = document.createElement('div');
+                    newRow.classList.add('itinerary-row', 'border', 'rounded-sm', 'p-2', 'my-4');
+                    newRow.innerHTML = `
+                        <div class="inputs_group_3">
+                            <div class="inputs">
+                                <label>Day Number</label>
+                                <input type="number" name="itineraries[${itineraryIndex}][day_number]" />
+                            </div>
+                            <div class="inputs">
+                                <label>Title</label>
+                                <input type="text" name="itineraries[${itineraryIndex}][title]" />
+                            </div>
+                            <div class="inputs">
+                                <label>Description</label>
+                                <textarea name="itineraries[${itineraryIndex}][description]"></textarea>
+                            </div>
                         </div>
+                        <button type="button" class="btn_danger remove-itinerary">Remove</button>
+                    `;
 
-                        <div class="inputs">
-                            <label>Title</label>
-                            <input type="text" name="itineraries[${itineraryIndex}][title]" placeholder="Title" />
-                        </div>
+                    wrapper.appendChild(newRow);
+                    itineraryIndex++;
+                    wrapper.dataset.itineraryIndex = itineraryIndex;
+                });
 
-                        <div class="inputs">
-                            <label>Description</label>
-                            <textarea name="itineraries[${itineraryIndex}][description]" placeholder="Description"></textarea>
-                        </div>
-                    </div>
-                    <button type="button" class="btn_danger remove-itinerary">Remove</button>
-                `;
-
-                wrapper.appendChild(newRow);
-                itineraryIndex++;
-            });
-
-            document.getElementById('itineraries-wrapper').addEventListener('click', function (e) {
-                if (e.target.classList.contains('remove-itinerary')) {
-                    e.target.closest('.itinerary-row').remove();
-                }
+                wrapper.addEventListener('click', function (e) {
+                    if (e.target.classList.contains('remove-itinerary')) {
+                        e.target.closest('.itinerary-row').remove();
+                    }
+                });
             });
         </script>
     @endpush
