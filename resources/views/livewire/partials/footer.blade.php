@@ -35,9 +35,9 @@
             <div class="packages">
                 <h3>Packages</h3>
                 <div class="links">
-                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}">Kenya Tours</a>
-                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}">Tanzania Tours</a>
-                    <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}">Kenya-Tanzania Tours</a>
+                    @foreach ($categories as $category)
+                        <a href="{{ Route::has('categorized-tours-page') ? route('categorized-tours-page', $category->slug) : '#' }}">{{ Str::title($category->title) }}</a>
+                    @endforeach
                 </div>
             </div>
 
