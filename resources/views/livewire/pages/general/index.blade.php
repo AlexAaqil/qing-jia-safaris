@@ -12,7 +12,7 @@
                 <div class="text">
                     <h1>{{ config('app.name') }}</h1>
                     <p class="sub_title">{{ config('app.slogan') }}</p>
-                    <p class="punchline">Your trusted gateway to unforgettable adventures across Kenya and Tanzania</p>
+                    <p class="punchline">Your trusted gateway to unforgettable adventures across East Africa</p>
                 </div>
 
                 <div
