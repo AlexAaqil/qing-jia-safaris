@@ -207,3 +207,23 @@
         }
     }
 }
+
+.BookingForm {
+    .form_details {
+        @apply mb-6;
+
+        p {
+            @apply grid grid-cols-12 gap-2 mb-1;
+
+            span {
+                &:first-of-type {
+                    @apply col-span-3 text-gray-600;
+                }
+
+                &:last-of-type {
+                    @apply col-span-9 font-semibold;
+                }
+            }
+        }
+    }
+}

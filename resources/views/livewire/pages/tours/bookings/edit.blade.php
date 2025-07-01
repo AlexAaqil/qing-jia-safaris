@@ -1,4 +1,4 @@
-<div class="custom_form py-4 max-w-5xl mx-auto">
+<div class="BookingForm custom_form py-4 max-w-5xl mx-auto">
     <div class="header">
         <h2>Edit Booking</h2>
     </div>
@@ -7,7 +7,7 @@
         <div class="form_details">
             <p>
                 <span>Name</span>
-                <span>{{ $booking->first_name }} {{ $booking->last_name }}</span>
+                <span>{{ $booking->name }}</span>
             </p>
 
             <p>
@@ -31,13 +31,8 @@
             </p>
 
              <p>
-                <span>No. of adults</span>
+                <span>No. of children</span>
                 <span>{{ $booking->number_of_children ?? 'N/A' }}</span>
-            </p>
-
-            <p>
-                <span>Travel Date</span>
-                <span>{{ $booking->date_of_travel->format('jS M Y') }}</span>
             </p>
 
             <p>
@@ -46,11 +41,26 @@
             </p>
 
             <p>
+                <span>Travel Date</span>
+                <span>{{ $booking->date_of_travel->format('jS M Y') }}</span>
+            </p>
+
+            <p>
                 <span>Additional Information</span>
                 <span>{{ $booking->additional_information ?? 'N/A' }}</span>
             </p>
 
-            <p>status, payment_status, total_amount, amount_paid, ip_address, user_agent</p>
+            @if(auth()->user()->isSuperAdmin())
+                <p>
+                    <span>IP Address</span>
+                    <span>{{ $booking->ip_address }}</span>
+                </p>
+
+                <p>
+                    <span>User Agent</span>
+                    <span>{{ $booking->user_agent }}</span>
+                </p>
+            @endif
         </div>
 
         <div class="inputs_group_3">
