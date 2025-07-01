@@ -37,7 +37,7 @@ class TourRequest extends FormRequest
             'description' => ['nullable','string'],
             'duration_days' => ['required','integer'],
             'duration_nights' => ['nullable','integer'],
-            'currency' => ['required','string','max:3'],
+            'currency' => ['required','string','in:$'],
             'price' => ['required','numeric'],
             'price_ranges_to' => ['nullable','numeric'],
             'tour_category_id' => ['required','exists:tour_categories,id'],

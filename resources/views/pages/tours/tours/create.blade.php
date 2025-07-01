@@ -62,8 +62,8 @@
 
             <div class="inputs_group_3">
                 <div class="inputs">
-                    <label for="currency" class="required">Currency</label>
-                    <input type="text" name="currency" id="currency" placeholder="$" value="{{ old('currency', '$') }}">
+                    <label for="currency">Currency (Default is $)</label>
+                    <input type="text" name="currency" id="currency" placeholder="$" value="$" readonly>
                     <x-form-input-error field="currency" />
                 </div>
 

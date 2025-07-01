@@ -74,13 +74,13 @@
 
         <div class="inputs_group_3">
             <div class="inputs">
-                <label for="total_amount">Total Amount</label>
+                <label for="total_amount">Total Amount ($)</label>
                 <input type="number" wire:model="total_amount" id="total_amount" min="0">
                 <x-form-input-error field="total_amount" />
             </div>
 
             <div class="inputs">
-                <label for="amount_paid">Amount Paid</label>
+                <label for="amount_paid">Amount Paid ($)</label>
                 <input type="number" wire:model="amount_paid" id="amount_paid" min="0">
                 <x-form-input-error field="amount_paid" />
             </div>
