@@ -1,0 +1,12 @@
+@import "./utilities.css";
+
+.image,
+img {
+    @apply rounded-lg;
+}
+.image {
+    @apply bg-slate-200;
+    img {
+        @apply object-cover w-full h-full;
+    }
+}

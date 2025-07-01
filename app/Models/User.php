@@ -6,13 +6,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Traits\UserRoleScopes;
 use App\Enums\USER_ROLES;
 use App\Enums\USER_STATUSES;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, UserRoleScopes;
 
     /**
      * The attributes that are mass assignable.
@@ -58,6 +59,11 @@ class User extends Authenticatable
     public function isActive(): bool
     {
         return $this->status === USER_STATUSES::ACTIVE;
+    }
+
+    public function getStatusLabelAttribute(): string
+    {
+        return $this->status ? 'Active' : 'Inactive';
     }
 
     public function isSuperAdmin(): bool

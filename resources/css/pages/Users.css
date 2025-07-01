@@ -4,27 +4,24 @@
             @apply grid grid-cols-1 md:grid-cols-4 gap-4;
 
             .user {
-                @apply bg-blue-50 p-4 rounded-lg grid grid-cols-3 gap-4;
+                @apply bg-gray-50 p-4 rounded-lg;
 
-                .image {
-                    @apply col-span-1 h-[70px] w-[70px] flex items-center justify-center;
-                }
-
-                .content {
-                    @apply col-span-2;
+                .details {
+                    @apply flex gap-6;
 
                     .info {
                         @apply space-y-1;
 
-                        .names {
-                            @apply font-semibold;
-                        }
-
-                        .email,
-                        .phone_number {
-                            @apply text-sm text-gray-500;
+                        h3 {
+                            @apply text-lg font-semibold;
                         }
                     }
+                }
+            }
+
+            .actions {
+                .crud {
+                    @apply mt-0 gap-2;
                 }
             }
         }

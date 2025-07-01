@@ -18,7 +18,6 @@
 
             <div class="search">
                 <input type="text" placeholder="Search...">
-                <button>Search</button>
             </div>
 
             <div class="button">

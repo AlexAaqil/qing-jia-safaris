@@ -1,4 +1,4 @@
-@import './utilities.css';
+@import './globals.css';
 
 .app_layout {
     .container {
@@ -22,7 +22,7 @@
         }
 
         .app_header {
-            @apply flex flex-col items-start md:flex-row md:justify-between md:py-4 gap-4;
+            @apply grid grid-cols-1 md:grid-cols-3 items-center gap-2 py-4;
 
             .info {
                 h2 {
@@ -30,22 +30,28 @@
                 }
 
                 .stats {
-                    @apply flex gap-1;
+                    @apply flex items-center gap-2;
 
                     span {
-                        @apply text-xs;
-                    }
-                    span:not(:last-child) {
-                        @apply after:content-['|'] after:ml-1 after:text-gray-400;
+                        @apply text-sm text-gray-600;
 
+                        &:not(:last-child) {
+                            @apply after:content-['|'] after:ml-2;
+                        }
                     }
                 }
             }
 
             .search {
+                @apply md:col-span-1;
+
                 input {
-                    @apply border border-gray-400 rounded-sm px-2 py-1;
+                    @apply border-1 border-gray-300 rounded-md px-4 py-2 w-full;
                 }
+            }
+
+            .button {
+                @apply md:justify-self-end;
             }
         }
     }
@@ -67,10 +73,43 @@
     }
 
     .image {
-        @apply bg-slate-200 rounded-lg;
+        @apply rounded-lg;
 
         img {
-            @apply w-full h-full object-cover rounded-lg;
+            @apply rounded-lg;
+        }
+    }
+
+    .actions {
+        @apply flex items-center gap-2;
+
+        a.edit,
+        a.danger,
+        button.edit,
+        button.danger {
+            @apply m-0 p-1;
+
+            svg {
+                @apply w-5 h-5;
+            }
+        }
+
+        a.edit,
+        button.edit {
+            @apply bg-transparent border-none;
+
+            svg {
+                @apply text-green-600;
+            }
+        }
+
+        a.delete,
+        button.delete {
+            @apply bg-transparent border-none;
+
+            svg {
+                @apply text-red-600;
+            }
         }
     }
 
