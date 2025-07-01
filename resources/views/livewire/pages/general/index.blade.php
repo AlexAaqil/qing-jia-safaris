@@ -12,16 +12,16 @@
                 <div class="text">
                     <h1>{{ config('app.name') }}</h1>
                     <p class="sub_title">{{ config('app.slogan') }}</p>
-                    <p class="punchline">Your trusted gateway to unforgettable adventures across East Africa</p>
+                    <p class="punchline">Dependable travel experiences that leave lasting memories</p>
                 </div>
 
                 <div
                     class="slideshow"
                     x-data="{
                         images: [
+                            '{{ asset('assets/images/lions.jpg') }}',
                             '{{ asset('assets/images/elephants.png') }}',
                             '{{ asset('assets/images/rhinos.jpg') }}',
-                            '{{ asset('assets/images/lions.jpg') }}',
                             '{{ asset('assets/images/buffalos.jpg') }}',
                             '{{ asset('assets/images/leopard.jpg') }}',
                         ],

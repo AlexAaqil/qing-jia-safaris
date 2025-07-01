@@ -19,10 +19,10 @@ return [
     'city' => 'Nairobi, Kenya',
     'email' => 'info@qingjiasafaris.com',
     'phone_number' => '+254 722 961 971',
-    'instagram' => '#',
+    'instagram' => 'https://www.instagram.com/qing_jia_safaris?igsh=N2EwcmUyenh4aDls&utm_source=qr',
     'facebook' => '#',
     'whatsapp' => '#',
-    'tiktok' => '#',
+    'tiktok' => 'https://www.tiktok.com/@qing_jia_safaris?_t=ZM-8xfXL0dbaEA&_r=1',
 
     /*
     |--------------------------------------------------------------------------

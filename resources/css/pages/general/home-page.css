@@ -23,7 +23,7 @@
                 @apply relative px-0 mx-auto h-[40dvh] md:h-[80dvh] rounded-lg;
 
                 .overlay {
-                    @apply rounded-lg absolute inset-0 bg-black/30 z-10;
+                    @apply rounded-lg absolute inset-0 bg-black/20 z-10;
                 }
 
                 .text {
@@ -38,7 +38,7 @@
                     }
 
                     .punchline {
-                        @apply text-lg md:text-3xl font-semibold;
+                        @apply text-lg md:text-3xl font-bold;
                     }
                 }
 
