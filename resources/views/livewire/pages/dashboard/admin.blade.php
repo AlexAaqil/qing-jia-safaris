@@ -87,81 +87,87 @@
         let salesChartInstance = null;
         let citiesChartInstance = null;
 
-        function renderSalesChart(data) {
-            const ctx = document.getElementById('salesChart');
-            if (!ctx) return;
-
-            // Destroy existing chart instance to prevent duplicates
-            if (salesChartInstance) {
-                salesChartInstance.destroy();
-            }
-
-            salesChartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Amount',
-                        data: data,
-                        borderWidth: 1,
-                        borderRadius: 2,
-                        backgroundColor: '#3b82f6',
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
+        function tryGetCanvas(id, retries = 10, delay = 100) {
+            return new Promise((resolve, reject) => {
+                function tryFind() {
+                    const el = document.getElementById(id);
+                    if (el) return resolve(el);
+                    if (--retries <= 0) return reject(`Canvas ${id} not found`);
+                    setTimeout(tryFind, delay);
                 }
+                tryFind();
             });
         }
 
-        function renderCitiesChart(labels, data) {
-            const ctx = document.getElementById('citiesChart');
-            if (!ctx) return;
+        async function renderSalesChart(data) {
+            try {
+                const ctx = await tryGetCanvas('salesChart');
+                if (salesChartInstance) salesChartInstance.destroy();
 
-            // Destroy existing chart instance to prevent duplicates
-            if (citiesChartInstance) {
-                citiesChartInstance.destroy();
+                salesChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [{
+                            label: 'Amount',
+                            data: data,
+                            borderWidth: 1,
+                            borderRadius: 2,
+                            backgroundColor: '#3b82f6',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                    }
+                });
+            } catch (err) {
+                console.warn(err);
             }
+        }
 
-            citiesChartInstance = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Bookings',
-                        data: data,
-                        backgroundColor: [
-                            '#3b82f6', '#6366f1', '#10b981', '#f59e0b',
-                            '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6'
-                        ],
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        legend: {
-                            position: 'right',
+        async function renderCitiesChart(labels, data) {
+            try {
+                const ctx = await tryGetCanvas('citiesChart');
+                if (citiesChartInstance) citiesChartInstance.destroy();
+
+                citiesChartInstance = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Bookings',
+                            data: data,
+                            backgroundColor: [
+                                '#3b82f6', '#6366f1', '#10b981', '#f59e0b',
+                                '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6'
+                            ],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                            }
                         }
                     }
-                }
-            });
+                });
+            } catch (err) {
+                console.warn(err);
+            }
         }
 
-        function bootDashboardCharts() {
-            renderSalesChart(@json($sales_data));
-            renderCitiesChart(@json($booking_labels), @json($booking_orders));
+        async function bootDashboardCharts() {
+            await renderSalesChart(@json($sales_data));
+            await renderCitiesChart(@json($booking_labels), @json($booking_orders));
         }
 
-        // Initial load
         document.addEventListener('DOMContentLoaded', bootDashboardCharts);
-
-        // After Livewire navigate (v3)
         document.addEventListener('livewire:navigated', () => {
-            // Wait a bit to ensure DOM is ready
-            setTimeout(bootDashboardCharts, 50);
+            setTimeout(bootDashboardCharts, 100); // slight delay is still useful
         });
     </script>
 @endpush
