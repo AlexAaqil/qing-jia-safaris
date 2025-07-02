@@ -20,8 +20,8 @@ return [
     'email' => 'info@qingjiasafaris.com',
     'phone_number' => '+254 722 961 971',
     'instagram' => 'https://www.instagram.com/qing_jia_safaris?igsh=N2EwcmUyenh4aDls&utm_source=qr',
-    'facebook' => '#',
-    'whatsapp' => '#',
+    'facebook' => 'https://www.facebook.com/share/1AJ2umEZVU/?mibextid=wwXIfr',
+    'whatsapp' => 'https://wa.me/254722961971',
     'tiktok' => 'https://www.tiktok.com/@qing_jia_safaris?_t=ZM-8xfXL0dbaEA&_r=1',
 
     /*

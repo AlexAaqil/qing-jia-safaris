@@ -44,16 +44,16 @@
             <div class="connect">
                 <h3>Connect With Us</h3>
                 <div class="socials">
-                    <a href="{{ config('app.instagram') }}">
+                    <a href="{{ config('app.instagram') }}" target="_blank" rel="noopener noreferrer">
                         <x-svgs.instagram />
                     </a>
-                    <a href="{{ config('app.facebook') }}">
+                    <a href="{{ config('app.facebook') }}" target="_blank" rel="noopener noreferrer">
                         <x-svgs.facebook />
                     </a>
-                    <a href="{{ config('app.whatsapp') }}">
+                    <a href="{{ config('app.whatsapp') }}" target="_blank" rel="noopener noreferrer">
                         <x-svgs.whatsapp />
                     </a>
-                    <a href="{{ config('app.tiktok') }}">
+                    <a href="{{ config('app.tiktok') }}" target="_blank" rel="noopener noreferrer">
                         <x-svgs.tiktok />
                     </a>
                 </div>
@@ -64,8 +64,8 @@
         <div class="copyrights">
             <p class="text">&copy; 2025 {{ config('app.name') }}. All rights reserved.</p>
             <div class="documents">
-                <a href="/privacy-policy">Privacy Policy</a>
-                <a href="/terms">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
             </div>
         </div>
     </div>
