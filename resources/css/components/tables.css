@@ -7,7 +7,7 @@
         border-spacing: 0;
 
         thead th.numbering,
-        thead th.actions,
+        thead th.action,
         tbody td.numbering,
         tbody td.action {
             @apply text-center;

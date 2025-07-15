@@ -42,13 +42,12 @@
                     <thead>
                         <tr>
                             <th class="numbering">#</th>
-                            <th>Booking Code</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>Tour</th>
-                            <th>Travel Date</th>
+                            <th>Booking ID</th>
+                            <th>Guest Name</th>
+                            <th>Contact Info</th>
+                            <th>Tour Title</th>
                             <th>Booking Date</th>
+                            <th>Travel Date</th>
                             <th class="action">Actions</th>
                         </tr>
                     </thead>
@@ -59,11 +58,36 @@
                                 <td class="numbering">{{ $loop->iteration }}</td>
                                 <td>{{ $booking->booking_code }}</td>
                                 <td>{{ $booking->name }}</td>
-                                <td>{{ $booking->email }}</td>
-                                <td>{{ $booking->phone_number }}</td>
+                                <td>
+                                    <p>{{ $booking->email }}</p>
+                                    <p>{{ $booking->phone_number }}</p>
+                                </td>
                                 <td>{{ Str::words($booking->tour->title, 4) }}</td>
-                                <td>{{ $booking->date_of_travel->format('j M Y') ?? 'N/A' }}</td>
                                 <td>{{ $booking->created_at->diffForHumans() }}</td>
+                                <td>
+                                    @if($booking->date_of_travel)
+                                        @php
+                                            $status = $booking->days_to_travel;
+                                            $color = match(true) {
+                                                $status === 'Today' => 'text-yellow-600',
+                                                $status === 'Tomorrow' => 'text-yellow-500',
+                                                str_contains($status, 'In') => 'text-green-600',
+                                                $status === 'Yesterday' => 'text-red-400',
+                                                str_contains($status, 'ago') => 'text-red-600',
+                                                default => 'text-gray-500',
+                                            };
+                                        @endphp
+
+                                        <div class="flex flex-col text-sm">
+                                            <p>{{ $booking->date_of_travel->format('j M Y') }}</p>
+                                            <p class="{{ $color }} font-semibold">
+                                                {{ $status }}
+                                            </p>
+                                        </div>
+                                    @else
+                                        <p class="text-gray-400">N/A</p>
+                                    @endif
+                                </td>
                                 <td class="actions">
                                     <div class="action">
                                         <a href="{{ Route::has('bookings.edit') ? route('bookings.edit', $booking->uuid) : '#' }}" wire:navigate>
