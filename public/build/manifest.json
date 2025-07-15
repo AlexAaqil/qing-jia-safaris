@@ -4,12 +4,12 @@
     "src": "public/assets/images/elephants.png"
   },
   "resources/css/app-layout.css": {
-    "file": "assets/app-layout-Zr1hxEEN.css",
+    "file": "assets/app-layout-CoATDX1i.css",
     "src": "resources/css/app-layout.css",
     "isEntry": true
   },
   "resources/css/guest-layout.css": {
-    "file": "assets/guest-layout-ulJk9TAd.css",
+    "file": "assets/guest-layout-vESRPBAm.css",
     "src": "resources/css/guest-layout.css",
     "isEntry": true
   },
