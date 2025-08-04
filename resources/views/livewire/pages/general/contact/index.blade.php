@@ -2,7 +2,7 @@
     <section class="Hero">
         <div class="container">
             <h1>Get In Touch</h1>
-            <p>Let's discuss how we can help transform your business with custom software solutions.</p>
+            <p>Ready to collaborate or have any questions? Reach out to us and our expert team will gladly help you out.</p>
         </div>
     </section>
 
