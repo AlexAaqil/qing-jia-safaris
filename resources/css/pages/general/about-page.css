@@ -15,6 +15,10 @@
 
             .text {
                 @apply text-gray-700 space-y-4;
+
+                .special_link {
+                    @apply text-indigo-600 hover:text-indigo-800 transition font-bold;
+                }
             }
         }
     }

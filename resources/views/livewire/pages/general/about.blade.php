@@ -16,8 +16,9 @@
             </div>
 
             <div class="text">
-                <p>Welcome to Qing Jia Safaris, your trusted gateway to unforgettable adventures across Kenya and Tanzania. We are a premier tour operating company passionate about crafting authentic, enriching, and memorable safari experiences tailored to suit every traveler’s dream. Whether you’re looking for thrilling game drives, peaceful beach escapes, or challenging mountain climbs, Qing Jia Safaris brings East Africa’s finest attractions to life with unmatched professionalism and care.</p>
                 <p>Client satisfaction and comfort are our highest priorities. From the moment you arrive to your final farewell, we ensure every detail is thoughtfully planned and professionally delivered. Our dedicated team of local guides, drivers, and support staff work tirelessly to provide personalized service, cultural insights, and unforgettable memories.</p>
+
+                <p>We are proudly represented on <a href="https://www.safarigo.com/" target="_blank" rel="noopener noreferrer" class="special_link">SafariBookings</a>, where travelers from around the world can discover and book our safari experiences with confidence.</p>
 
                 <div class="buttons_group">
                     <a href="{{ Route::has('tours-page') ? route('tours-page') : '#' }}" class="btn" wire:navigate>Book Now</a>
