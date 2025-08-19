@@ -90,7 +90,7 @@
                                 </td>
                                 <td class="actions">
                                     <div class="action">
-                                        <a href="{{ Route::has('bookings.edit') ? route('bookings.edit', $booking->uuid) : '#' }}" wire:navigate>
+                                        <a href="{{ Route::has('bookings.edit') ? route('bookings.edit', $booking->uuid) : '#' }}">
                                             <x-svgs.edit class="text-green-600" />
                                         </a>
                                     </div>

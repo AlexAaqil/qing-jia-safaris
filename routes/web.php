@@ -9,11 +9,11 @@ use App\Livewire\Pages\General\Tours\Tours\Details as TourDetailsPage;
 use App\Livewire\Pages\General\Tours\Tours\Categorized as CategorizedToursPage;
 use App\Livewire\Pages\General\Tours\Destinations\Index as DestinationsPage;
 use App\Livewire\Pages\General\Tours\Destinations\Details as DestinationDetailsPage;
+
 use App\Livewire\Pages\Dashboard\Index as Dashboard;
+
 use App\Livewire\Pages\ContactMessages\Index as ContactMessages;
-use App\Livewire\Pages\Users\Index as Users;
-use App\Livewire\Pages\Users\Form as CreateUser;
-use App\Livewire\Pages\Users\Form as EditUser;
+
 use App\Livewire\Pages\Tours\Categories\Index as TourCategories;
 use App\Http\Controllers\Tours\TourCategoryController;
 use App\Livewire\Pages\Tours\Tours\Index as Tours;
@@ -24,7 +24,11 @@ use App\Http\Controllers\Tours\TourImageController;
 use App\Livewire\Pages\Tours\Bookings\Form as BookTour;
 use App\Livewire\Pages\Tours\Bookings\Success as BookTourSuccess;
 use App\Livewire\Pages\Tours\Bookings\Index as Bookings;
-use App\Livewire\Pages\Tours\Bookings\Edit as EditBookings;
+use App\Http\Controllers\Tours\BookingController;
+
+use App\Livewire\Pages\Users\Index as Users;
+use App\Livewire\Pages\Users\Form as CreateUser;
+use App\Livewire\Pages\Users\Form as EditUser;
 
 Route::get('/', HomePage::class)->name('home-page');
 Route::get('about', About::class)->name('about-page');
@@ -63,7 +67,8 @@ Route::middleware(['authenticated_user'])->group(function() {
         Route::post('tour-images/sort', [TourImageController::class, 'sort'])->name('tour-images.sort');
 
         Route::get('bookings', Bookings::class)->name('bookings.index');
-        Route::get('bookings/{booking}/edit', EditBookings::class)->name('bookings.edit');
+        Route::get('bookings/{booking}/edit', [BookingController::class, 'edit'])->name('bookings.edit');
+        Route::patch('bookings/{booking}', [BookingController::class, 'update'])->name('bookings.update');
 
         Route::get('contact-messages', ContactMessages::class)->name('contact-messages.index');
     });

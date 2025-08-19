@@ -28,6 +28,11 @@ class Booking extends Model
         });
     }
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     public function tour(): BelongsTo
     {
         return $this->belongsTo(Tour::class);
