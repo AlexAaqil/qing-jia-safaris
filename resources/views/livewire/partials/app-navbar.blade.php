@@ -26,23 +26,28 @@
                         [
                             'route' => 'dashboard',
                             'label' => 'Dashboard',
+                            'navigate' => false,
                         ],
                         [
                             'route' => 'users.index',
                             'label' => 'Users',
                             'can' => $user && $user->isAdmin(),
+                            'navigate' => true,
                         ],
                         [
                             'route' => 'tours.index',
                             'label' => 'Tours',
+                            'navigate' => true,
                         ],
                         [
                             'route' => 'bookings.index',
                             'label' => 'Bookings',
+                            'navigate' => true,
                         ],
                         [
                             'route' => 'contact-messages.index',
                             'label' => 'Messages',
+                            'navigate' => true,
                         ],
                     ];
 
@@ -53,7 +58,7 @@
                     @if (!isset($item['can']) || $item['can'])
                         <a
                             href="{{ Route::has($item['route']) ? route($item['route']) : '#' }}"
-                            wire:navigate
+                            @if($item['navigate'] ?? true) wire:navigate @endif
                             class="{{ $currentRoute === $item['route'] ? 'active' : '' }}"
                         >
                             {{ $item['label'] }}
